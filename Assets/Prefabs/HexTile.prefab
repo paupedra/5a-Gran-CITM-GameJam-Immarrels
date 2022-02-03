@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2022064465545117076}
   m_Layer: 0
   m_Name: UnlockTileUpRight
-  m_TagString: Untagged
+  m_TagString: UnlockTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 2326610428488578322}
   m_Layer: 0
   m_Name: UnlockTileUpLeft
-  m_TagString: Untagged
+  m_TagString: UnlockTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 7284912008310508560}
   m_Layer: 0
   m_Name: UnlockTileDownRight
-  m_TagString: Untagged
+  m_TagString: UnlockTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 308588707576641016}
   m_Layer: 0
   m_Name: UnlockTileLeft
-  m_TagString: Untagged
+  m_TagString: UnlockTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 2189372925898433633}
   m_Layer: 0
   m_Name: UnlockTileDownLeft
-  m_TagString: Untagged
+  m_TagString: UnlockTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 1616689198297400607}
   m_Layer: 0
   m_Name: UnlockTileRight
-  m_TagString: Untagged
+  m_TagString: UnlockTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

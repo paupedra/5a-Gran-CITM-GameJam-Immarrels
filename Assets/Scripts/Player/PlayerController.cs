@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject miningAreaObject;
     BoxCollider miningAreaCollider;
+
+    public GameObject unlockTileImage;
+    public Vector3 imageOffset = new Vector3(0f, 0f, 5f);
 
     void Start()
     {
@@ -109,6 +113,29 @@ public class PlayerController : MonoBehaviour
             {
                 other.gameObject.GetComponentInParent<HexTileManager>().UnlockDownLeftTile();
             }
+
+            if (other.gameObject.tag == "UnlockTrigger" && unlockTileImage.activeSelf)
+            {
+                unlockTileImage.SetActive(false);
+            }
+
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "UnlockTrigger")
+        {
+            unlockTileImage.SetActive(true);
+            unlockTileImage.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + imageOffset);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "UnlockTrigger")
+        {
+            unlockTileImage.SetActive(false);
         }
     }
 }

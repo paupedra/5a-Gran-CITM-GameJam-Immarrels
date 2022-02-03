@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HaxTile
   - Ore
+  - UnlockTrigger
   layers:
   - Default
   - TransparentFX
