@@ -90,6 +90,10 @@ public class HexGridManager : MonoBehaviour
 
         for (int i = 0; i < gridWidth * gridHeight; i++)
         {
+            if(i==10)
+            {
+                Debug.Log("10");
+            }
             tiles[i].hexTileManager.FindNeighbours();
         }
 

@@ -353,6 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d98e6a0d2dfc2c4c85e777456e7305f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paused: 0
   pauseMenu: {fileID: 1777629806}
   gui: {fileID: 848257622}
 --- !u!4 &276678281
@@ -475,29 +476,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8375004733070724592, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
-      propertyPath: m_StepOffset
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 8375004733070724593, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
-      propertyPath: playerSpeed
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 8375004733070724595, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8375004733070724595, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8375004733070724595, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8375004733070724595, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8375004733070724595, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
       propertyPath: m_LocalPosition.x

@@ -25,6 +25,8 @@ public class HexTileManager : MonoBehaviour
 
     public bool active = false;
 
+    public float oreHeight= 0.75f;
+
     public HexGridManager gridManager;
 
     public BoxCollider unlockUpRight;
@@ -142,26 +144,26 @@ public class HexTileManager : MonoBehaviour
             {
                 case 1:
 
-                    containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
+                    containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
 
                     break;
 
                 case 2:
-                    containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x + 0.5F, 0.5f, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
-                    containedObjects[1] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
+                    containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x + 0.5F, oreHeight, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
+                    containedObjects[1] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
                     break;
 
                 case 3:
-                    containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x+0.5f, 0.5f, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
-                    containedObjects[1] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z+ 0.5f), Quaternion.identity, gameObject.transform);
-                    containedObjects[2] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z - 0.5f), Quaternion.identity, gameObject.transform);
+                    containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x+0.5f, oreHeight, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
+                    containedObjects[1] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z+ 0.5f), Quaternion.identity, gameObject.transform);
+                    containedObjects[2] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z - 0.5f), Quaternion.identity, gameObject.transform);
                     break;
 
                 case 4:
-                    containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x+0.5f, 0.5f, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
-                    containedObjects[1] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z+ 0.5f), Quaternion.identity, gameObject.transform);
-                    containedObjects[2] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x+0.5f, 0.5f, gameObject.transform.position.z - 0.5f), Quaternion.identity, gameObject.transform);
-                    containedObjects[3] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z - 0.5f), Quaternion.identity, gameObject.transform);
+                    containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x+0.5f, oreHeight, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
+                    containedObjects[1] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z+ 0.5f), Quaternion.identity, gameObject.transform);
+                    containedObjects[2] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x+0.5f, oreHeight, gameObject.transform.position.z - 0.5f), Quaternion.identity, gameObject.transform);
+                    containedObjects[3] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z - 0.5f), Quaternion.identity, gameObject.transform);
                     break;
             }
 
@@ -184,7 +186,7 @@ public class HexTileManager : MonoBehaviour
                 tileLeft = gridManager.tiles[x - 1 + y * gridManager.gridWidth].hexTileManager;
             }
 
-            if (y + 1 < gridManager.gridHeight -1)
+            if (y + 1 < gridManager.gridHeight )
             {
                 tileUpRight = gridManager.tiles[x + (y + 1) * gridManager.gridWidth].hexTileManager;
 
@@ -218,17 +220,17 @@ public class HexTileManager : MonoBehaviour
                 tileLeft = gridManager.tiles[x - 1 + y * gridManager.gridWidth].hexTileManager;
             }
 
-            if (y + 1 < gridManager.gridHeight - 1 && x + 1 < gridManager.gridWidth - 1)
+            if (y + 1 < gridManager.gridHeight  && x + 1 < gridManager.gridWidth )
             {
                 tileUpRight = gridManager.tiles[x + 1 + (y + 1) * gridManager.gridWidth].hexTileManager;
             }
 
-            if (y + 1 < gridManager.gridHeight - 1)
+            if (y + 1 < gridManager.gridHeight )
             {
                 tileUpLeft = gridManager.tiles[x + (y + 1) * gridManager.gridWidth].hexTileManager;
             }
 
-            if (y != 0 && x != 0)
+            if (y != 0 && x + 1 < gridManager.gridWidth )
             {
                 tileDownRight = gridManager.tiles[x + 1 + (y - 1) * gridManager.gridWidth].hexTileManager;
             }
