@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 6660544793138881916}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 6406921476679883765}
   m_Father: {fileID: 0}
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb949655d13d584fb13c2e3023037dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 2
   maxHp: 3
   hp: 3
   orePerHit: 1
@@ -54,6 +55,7 @@ MonoBehaviour:
   halveHPModel: {fileID: 3168868095100922198, guid: 6b012beef2821e24fafd68218313bbfb, type: 3}
   lowHPModel: {fileID: 9005742282856678235, guid: 6b012beef2821e24fafd68218313bbfb, type: 3}
   exhaustedModel: {fileID: 0}
+  respawnTime: 2
 --- !u!136 &6900624204055565035
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -65,9 +67,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.35
-  m_Height: 0.83691597
+  m_Height: 1.3860071
   m_Direction: 1
-  m_Center: {x: 0, y: 0.26940584, z: 0}
+  m_Center: {x: 0, y: 0.5439514, z: 0}
 --- !u!54 &-2590803176904993153
 Rigidbody:
   m_ObjectHideFlags: 0

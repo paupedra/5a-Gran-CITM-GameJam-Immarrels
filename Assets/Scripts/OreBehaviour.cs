@@ -13,11 +13,13 @@ public class OreBehaviour : MonoBehaviour
 {
     PlayerController player;
 
-    OreType type = OreType.ROCK;
+    public OreType type = OreType.ROCK;
 
     public int maxHp =3;
     public int hp = 3; //Amount of times it can be hit
     public int orePerHit = 1;
+
+    bool exhausted;
 
     public MeshFilter childMesh;
 
@@ -26,14 +28,16 @@ public class OreBehaviour : MonoBehaviour
     public Mesh lowHPModel;
     public Mesh exhaustedModel;
 
+    CapsuleCollider collider;
+
     float respawnTimer = 0;
-    float respawnTime = 2.0f;
+    public float respawnTime = 5.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
-        
+        collider = gameObject.GetComponent<CapsuleCollider>();
     }
 
     // Update is called once per frame
@@ -46,8 +50,8 @@ public class OreBehaviour : MonoBehaviour
             {
                 hp = maxHp;
                 respawnTimer = 0;
-                //change to full hp model
                 childMesh.mesh = fullHPModel;
+                exhausted = false;
             }
 
             respawnTimer += Time.deltaTime;
@@ -56,25 +60,47 @@ public class OreBehaviour : MonoBehaviour
 
     public void ReceiveHit()
     {
-        hp--;
-
-        if(hp == 2)
+        if(!exhausted)
         {
-            //change to second model
-            childMesh.mesh = halveHPModel;
-        }
+            switch (type)
+            {
+                case OreType.COAL:
 
-        if(hp == 1)
-        {
-            //change to third model
-            childMesh.mesh = lowHPModel;
-        }
+                    player.coal+= orePerHit;
 
-        if(hp == 0)
-        {
-            //start respawn timer
-            childMesh.mesh = null;
+                    break;
+
+                case OreType.METAL:
+                    player.metal += orePerHit;
+                    break;
+
+                case OreType.ROCK:
+                    player.rock += orePerHit;
+                    break;
+            }
+
+            hp--;
+
+            if (hp == 2)
+            {
+                //change to second model
+                childMesh.mesh = halveHPModel;
+            }
+
+            if (hp == 1)
+            {
+                //change to third model
+                childMesh.mesh = lowHPModel;
+            }
+
+            if (hp == 0)
+            {
+                //start respawn timer
+                childMesh.mesh = exhaustedModel;
+                exhausted = true;
+            }
         }
+       
 
     }
 }

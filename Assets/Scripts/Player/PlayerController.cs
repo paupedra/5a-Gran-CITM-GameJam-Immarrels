@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     bool mining = false;
     float miningTimer=0.0f;
-    float miningTime = 0.5f;
+    public float miningTime = 0.75f;
 
     public GameObject miningAreaObject;
     BoxCollider miningAreaCollider;
@@ -33,7 +33,6 @@ public class PlayerController : MonoBehaviour
         miningAreaObject.SetActive(false);
         miningAreaCollider = miningAreaObject.GetComponent<BoxCollider>();
 
-        
     }
 
 
