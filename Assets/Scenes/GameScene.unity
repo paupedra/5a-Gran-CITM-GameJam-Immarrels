@@ -219,9 +219,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hexTile: {fileID: 3830866654814144683, guid: 647c42805dbadab4d9420f1c96e89da2, type: 3}
-  metalOre: {fileID: 2701939129970070897, guid: b5246eb50aa527d45928555f86534c4f, type: 3}
-  coalOre: {fileID: 2147495605961754309, guid: 4a40ea79b1bbe7042bd80f016b5cedff, type: 3}
-  rockOre: {fileID: 8345893707432614746, guid: b2926a543a54f334ea908fa154d5d269, type: 3}
+  metalOre: {fileID: 1153772621246135185, guid: b5246eb50aa527d45928555f86534c4f, type: 3}
+  coalOre: {fileID: 6660544793138881916, guid: 4a40ea79b1bbe7042bd80f016b5cedff, type: 3}
+  rockOre: {fileID: 1972071253770319142, guid: b2926a543a54f334ea908fa154d5d269, type: 3}
   pavement: {fileID: 0}
   sawmill: {fileID: 0}
   refinery: {fileID: 0}

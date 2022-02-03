@@ -25,7 +25,7 @@ public class HexTileManager : MonoBehaviour
 
     public bool active = false;
 
-    public float oreHeight= 0.75f;
+    public float oreHeight= 0.5f;
 
     public HexGridManager gridManager;
 

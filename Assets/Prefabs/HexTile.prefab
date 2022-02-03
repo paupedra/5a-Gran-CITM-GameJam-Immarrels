@@ -346,6 +346,7 @@ MonoBehaviour:
   x: 0
   y: 0
   active: 0
+  oreHeight: 0.5
   gridManager: {fileID: 0}
   unlockUpRight: {fileID: 2022064465545117076}
   unlockRight: {fileID: 1616689198297400607}
