@@ -2,8 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum HexTileType
+{
+    EMPTY,
+    PAVEMENT,
+    ROCK,
+    COAL,
+    METAL,
+    REFINERY, //chemaneia
+    SAWMILL,
+    QUARRY
+}
+
 public class HexTileManager : MonoBehaviour
 {
+    public HexTileType tileType = HexTileType.EMPTY;
+
+    GameObject[] containedObjects; //any contained objects that will be destroyed upon new construction
 
     public int x;
     public int y;
@@ -33,6 +48,11 @@ public class HexTileManager : MonoBehaviour
     public HexTileManager tileDownRight;
     public HexTileManager tileLeft;
 
+    private void Awake()
+    {
+        containedObjects = new GameObject[4];
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +64,108 @@ public class HexTileManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SetTileActive(bool _active)
+    {
+        if(_active)
+        {
+            active = true;
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            active = false;
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void Build(HexTileType type, Quaternion rotation)
+    {
+        for (int i = 0; i < containedObjects.Length; i++)
+        {
+            Destroy(containedObjects[i]);
+        }
+
+        switch (type)
+        {
+            case HexTileType.PAVEMENT:
+                containedObjects[0] = Instantiate(gridManager.pavement, new Vector3(0, 0.5f, 0), rotation, gameObject.transform);
+                break;
+
+            case HexTileType.QUARRY:
+                containedObjects[0] = Instantiate(gridManager.quarry, new Vector3(0, 0.5f, 0), rotation, gameObject.transform);
+                break;
+
+            case HexTileType.SAWMILL:
+                containedObjects[0] = Instantiate(gridManager.sawmill, new Vector3(0, 0.5f, 0), rotation, gameObject.transform);
+                break;
+
+            case HexTileType.REFINERY:
+                containedObjects[0] = Instantiate(gridManager.refinery, new Vector3(0, 0.5f, 0), rotation, gameObject.transform);
+                break;
+        }
+    }
+
+    public void SetTileOre()
+    {
+        //Randomize Materials (random between 0-4 to decide amount of ores)
+        int oreNum = Random.Range(0, 5);
+        if (oreNum > 0)
+        {
+            int ore = Random.Range(0, 3);
+
+            GameObject orePrefab = gridManager.rockOre;
+
+            switch (ore)
+            {
+                case 0: //Rock
+                    tileType = HexTileType.ROCK;
+                    orePrefab = gridManager.rockOre;
+
+                    break;
+
+                case 1: //Coal
+                    tileType = HexTileType.COAL;
+                    orePrefab = gridManager.coalOre;
+
+                    break;
+
+                case 2: //Metal
+                    tileType = HexTileType.METAL;
+                    orePrefab = gridManager.metalOre;
+
+                    break;
+            }
+
+            switch (oreNum)
+            {
+                case 1:
+
+                    containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
+
+                    break;
+
+                case 2:
+                    containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x + 0.5F, 0.5f, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
+                    containedObjects[1] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
+                    break;
+
+                case 3:
+                    containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x+0.5f, 0.5f, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
+                    containedObjects[1] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z+ 0.5f), Quaternion.identity, gameObject.transform);
+                    containedObjects[2] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z - 0.5f), Quaternion.identity, gameObject.transform);
+                    break;
+
+                case 4:
+                    containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x+0.5f, 0.5f, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
+                    containedObjects[1] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z+ 0.5f), Quaternion.identity, gameObject.transform);
+                    containedObjects[2] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x+0.5f, 0.5f, gameObject.transform.position.z - 0.5f), Quaternion.identity, gameObject.transform);
+                    containedObjects[3] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z - 0.5f), Quaternion.identity, gameObject.transform);
+                    break;
+            }
+
+        }
     }
 
     public void FindNeighbours()
@@ -200,8 +322,7 @@ public class HexTileManager : MonoBehaviour
     {
         if(tileUpRight != null)
         {
-            tileUpRight.gameObject.SetActive(true);
-            tileUpRight.active = true;
+            tileUpRight.SetTileActive(true);
 
             UnlockWallsArroundTile(tileUpRight);
         }
@@ -211,8 +332,7 @@ public class HexTileManager : MonoBehaviour
     {
         if (tileUpLeft != null)
         {
-            tileUpLeft.gameObject.SetActive(true);
-            tileUpLeft.active = true;
+            tileUpLeft.SetTileActive(true);
 
             UnlockWallsArroundTile(tileUpLeft);
         }
@@ -222,8 +342,7 @@ public class HexTileManager : MonoBehaviour
     {
         if (tileRight != null)
         {
-            tileRight.gameObject.SetActive(true);
-            tileRight.active = true;
+            tileRight.SetTileActive(true);
 
             UnlockWallsArroundTile(tileRight);
         }
@@ -233,8 +352,7 @@ public class HexTileManager : MonoBehaviour
     {
         if (tileLeft != null)
         {
-            tileLeft.gameObject.SetActive(true);
-            tileLeft.active = true;
+            tileLeft.SetTileActive(true);
 
             UnlockWallsArroundTile(tileLeft);
         }
@@ -244,8 +362,7 @@ public class HexTileManager : MonoBehaviour
     {
         if (tileDownRight != null)
         {
-            tileDownRight.gameObject.SetActive(true);
-            tileDownRight.active = true;
+            tileDownRight.SetTileActive(true);
 
             UnlockWallsArroundTile(tileDownRight);
         }
@@ -255,8 +372,7 @@ public class HexTileManager : MonoBehaviour
     {
         if (tileDownLeft != null)
         {
-            tileDownLeft.gameObject.SetActive(true);
-            tileDownLeft.active = true;
+            tileDownLeft.SetTileActive(true);
 
             UnlockWallsArroundTile(tileDownLeft);
         }
