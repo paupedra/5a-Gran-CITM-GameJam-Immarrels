@@ -18,19 +18,10 @@ public class MiningAreaBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
+
         if(other.gameObject.tag == "Ore")
         {
             other.gameObject.GetComponent<OreBehaviour>().ReceiveHit();
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.tag == "Ore")
-        {
-            collision.gameObject.GetComponent<OreBehaviour>().ReceiveHit();
         }
     }
 }
