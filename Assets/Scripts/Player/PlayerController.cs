@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour
     public float playerSpeed = 6.0f;
     public float playerTurnTime = 0.1f;
 
-    int rock = 0;
-    int coal = 0;
-    int metal = 0;
+    public int rock = 0;
+    public int coal = 0;
+    public int metal = 0;
 
     float turnVelocity;
 

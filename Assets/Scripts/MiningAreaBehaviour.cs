@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OreBehaviour : MonoBehaviour
+public class MiningAreaBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,5 +14,13 @@ public class OreBehaviour : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Ore")
+        {
+            other.gameObject.GetComponent<OreBehaviour>();
+        }
     }
 }
