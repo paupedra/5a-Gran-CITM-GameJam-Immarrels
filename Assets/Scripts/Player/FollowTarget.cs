@@ -21,6 +21,14 @@ public class FollowTarget : MonoBehaviour
         Vector3 newPos = target.transform.position + cameraOffset;
         Vector3 smoothPos = Vector3.SmoothDamp(transform.position, newPos, ref currentVel, smoothSpeed * Time.deltaTime);
         transform.position = smoothPos;
-        transform.LookAt(target);
+   
+        if(gameObject.name == "MinimapCamera")
+        {
+            transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+        }
+        else
+        {
+            transform.LookAt(target);
+        }
     }
 }
