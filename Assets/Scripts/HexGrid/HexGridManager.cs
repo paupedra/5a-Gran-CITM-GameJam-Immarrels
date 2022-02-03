@@ -2,27 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-class HexTile
+public class HexTile
 {
+    public GameObject tileObject;
 
-
-    public int x;
-    public int y;
-
-    //pther attributes: occupied, player occupied...
+    public HexTileManager hexTileManager;
 }
 
 public class HexGridManager : MonoBehaviour
 {
     public GameObject hexTile; //prefab for the hexagonal tiles
 
-
     public int gridWidth = 10;
     public int gridHeight = 10;
 
     public float radius = 0.24f;
 
-    HexTile[] tiles;
+    public HexTile[] tiles;
 
     // Start is called before the first frame update
     void Start()
@@ -43,23 +39,35 @@ public class HexGridManager : MonoBehaviour
 
                 if (y % 2 == 0)
                 {
-                    newTile = Instantiate(hexTile, new Vector3(y * (radius + radius / 2) , 0, x * a * 2 ), Quaternion.Euler(new Vector3(0,0,0)));
+                    newTile = Instantiate(hexTile, new Vector3(x * a * 2, 0, y * (radius + radius / 2)  ), Quaternion.Euler(new Vector3(0,30,0)));
                 }
                 else
                 {
-                    newTile = Instantiate(hexTile, new Vector3(y * (radius + radius / 2) , 0, x * a * 2 + a ), Quaternion.Euler(new Vector3(0, 0, 0)));
+                    newTile = Instantiate(hexTile, new Vector3(x * a * 2 + a, 0, y * (radius + radius / 2)  ), Quaternion.Euler(new Vector3(0, 30, 0)));
                 }
 
                 newTile.name = (x + y *gridWidth).ToString();
+                newTile.SetActive(false);
 
                 HexTile newHexTile = new HexTile();
 
-                newHexTile.x = x;
-                newHexTile.y = y;
+                newHexTile.tileObject = newTile;
+                newHexTile.hexTileManager = newTile.GetComponent<HexTileManager>();
+                newHexTile.hexTileManager.gridManager = this;
+                newHexTile.hexTileManager.x = x;
+                newHexTile.hexTileManager.y = y;
 
-                tiles[x + y] = new HexTile();
+                tiles[x + y * gridWidth] = newHexTile;
             }
         }
+
+        for(int i = 0; i < gridWidth * gridHeight; i++)
+        {
+            tiles[i].hexTileManager.FindNeighbours();
+        }
+
+        tiles[0].hexTileManager.active = true;
+        tiles[0].tileObject.SetActive(true);
     }
 
     // Update is called once per frame

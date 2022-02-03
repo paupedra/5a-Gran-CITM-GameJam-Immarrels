@@ -34,4 +34,40 @@ public class PlayerController : MonoBehaviour
             controller.Move(moveDir.normalized * playerSpeed * Time.deltaTime);
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(Input.GetKey("e"))
+        {
+            if(other.gameObject.name == "UnlockTileUpRight")
+            {
+                other.gameObject.GetComponentInParent<HexTileManager>().UnlockUpRightTile();
+            }
+
+            if (other.gameObject.name == "UnlockTileUpLeft")
+            {
+                other.gameObject.GetComponentInParent<HexTileManager>().UnlockUpLeftTile();
+            }
+
+            if (other.gameObject.name == "UnlockTileRight")
+            {
+                other.gameObject.GetComponentInParent<HexTileManager>().UnlockRightTile();
+            }
+
+            if (other.gameObject.name == "UnlockTileLeft")
+            {
+                other.gameObject.GetComponentInParent<HexTileManager>().UnlockLeftTile();
+            }
+
+            if (other.gameObject.name == "UnlockTileDownRight")
+            {
+                other.gameObject.GetComponentInParent<HexTileManager>().UnlockDownRightTile();
+            }
+
+            if (other.gameObject.name == "UnlockTileDownLeft")
+            {
+                other.gameObject.GetComponentInParent<HexTileManager>().UnlockDownLeftTile();
+            }
+        }
+    }
 }
