@@ -294,16 +294,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 784365aea028aa2449fca9d93f56fe7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 839340624}
   hexTile: {fileID: 3830866654814144683, guid: 647c42805dbadab4d9420f1c96e89da2, type: 3}
   metalOre: {fileID: 1153772621246135185, guid: b5246eb50aa527d45928555f86534c4f, type: 3}
   coalOre: {fileID: 6660544793138881916, guid: 4a40ea79b1bbe7042bd80f016b5cedff, type: 3}
   rockOre: {fileID: 1972071253770319142, guid: b2926a543a54f334ea908fa154d5d269, type: 3}
+  townHall: {fileID: 3735866907298715633, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
   pavement: {fileID: 0}
   sawmill: {fileID: 0}
   refinery: {fileID: 0}
   quarry: {fileID: 0}
-  gridWidth: 10
-  gridHeight: 10
+  gridWidth: 20
+  gridHeight: 20
   radius: 1
 --- !u!4 &153174842
 Transform:

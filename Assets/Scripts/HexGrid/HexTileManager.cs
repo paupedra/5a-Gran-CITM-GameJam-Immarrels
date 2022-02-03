@@ -4,14 +4,15 @@ using UnityEngine;
 
 public enum HexTileType
 {
-    EMPTY,
-    PAVEMENT,
     ROCK,
     COAL,
     METAL,
+    PAVEMENT,
+    TOWNHALL,
     REFINERY, //chemaneia
     SAWMILL,
-    QUARRY
+    QUARRY,
+    EMPTY,
 }
 
 public class HexTileManager : MonoBehaviour
@@ -91,31 +92,59 @@ public class HexTileManager : MonoBehaviour
 
         switch (type)
         {
+            case HexTileType.TOWNHALL:
+                containedObjects[0] = Instantiate(gridManager.townHall, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), rotation, gameObject.transform);
+                break;
+
             case HexTileType.PAVEMENT:
-                containedObjects[0] = Instantiate(gridManager.pavement, new Vector3(0, 0.5f, 0), rotation, gameObject.transform);
+                containedObjects[0] = Instantiate(gridManager.pavement, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), rotation, gameObject.transform);
                 break;
 
             case HexTileType.QUARRY:
-                containedObjects[0] = Instantiate(gridManager.quarry, new Vector3(0, 0.5f, 0), rotation, gameObject.transform);
+                containedObjects[0] = Instantiate(gridManager.quarry, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), rotation, gameObject.transform);
                 break;
 
             case HexTileType.SAWMILL:
-                containedObjects[0] = Instantiate(gridManager.sawmill, new Vector3(0, 0.5f, 0), rotation, gameObject.transform);
+                containedObjects[0] = Instantiate(gridManager.sawmill, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), rotation, gameObject.transform);
                 break;
 
             case HexTileType.REFINERY:
-                containedObjects[0] = Instantiate(gridManager.refinery, new Vector3(0, 0.5f, 0), rotation, gameObject.transform);
+                containedObjects[0] = Instantiate(gridManager.refinery, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), rotation, gameObject.transform);
                 break;
         }
     }
 
-    public void SetTileOre()
+    public void SetTileOre(HexTileType forcedType = HexTileType.EMPTY, int forcedAmount = 0)
     {
-        //Randomize Materials (random between 0-4 to decide amount of ores)
-        int oreNum = Random.Range(0, 5);
+        for (int i = 0; i < containedObjects.Length; i++)
+        {
+            Destroy(containedObjects[i]);
+        }
+
+        int oreNum = 0;
+        
+        if (forcedAmount != 0)
+        {
+            oreNum = forcedAmount;
+        }
+        else
+        {
+            oreNum = Random.Range(0, 5);
+        }
+
+        
         if (oreNum > 0)
         {
-            int ore = Random.Range(0, 3);
+            int ore;
+
+            if (forcedType != HexTileType.EMPTY)
+            {
+                ore = (int)forcedType;
+            }
+            else
+            {
+                ore = Random.Range(0, 3);
+            }
 
             GameObject orePrefab = gridManager.rockOre;
 
@@ -242,7 +271,7 @@ public class HexTileManager : MonoBehaviour
         }
     }
 
-    void UnlockWallsArroundTile(HexTileManager tile)
+    public void UnlockWallsArroundTile(HexTileManager tile)
     {
         //Check if any of the contiguous tiles is active and deactivate all the walls / triggers
 

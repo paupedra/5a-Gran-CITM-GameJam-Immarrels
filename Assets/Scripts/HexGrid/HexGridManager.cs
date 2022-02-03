@@ -11,11 +11,15 @@ public class HexTile
 
 public class HexGridManager : MonoBehaviour
 {
+    public FollowTarget camera;
+    GameObject player;
+
     public GameObject hexTile; //prefab for the hexagonal tiles
 
     public GameObject metalOre;
     public GameObject coalOre;
     public GameObject rockOre;
+    public GameObject townHall;
     public GameObject pavement;
     public GameObject sawmill;
     public GameObject refinery;
@@ -31,9 +35,13 @@ public class HexGridManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
+
         tiles = new HexTile[gridWidth * gridHeight];
 
         GenerateGrid();
+
+        SetStartingTiles();
     }
 
     // Update is called once per frame
@@ -76,11 +84,7 @@ public class HexGridManager : MonoBehaviour
                 newHexTile.hexTileManager.x = x;
                 newHexTile.hexTileManager.y = y;
 
-                if(x+y*gridWidth != 0)
-                {
-                    newHexTile.hexTileManager.SetTileOre();
-                }
-                
+                newHexTile.hexTileManager.SetTileOre();
 
                 newHexTile.hexTileManager.SetTileActive(false);
 
@@ -93,6 +97,31 @@ public class HexGridManager : MonoBehaviour
             tiles[i].hexTileManager.FindNeighbours();
         }
 
-        tiles[0].hexTileManager.SetTileActive(true); //Starting tile
+    }
+
+    void SetStartingTiles()
+    {
+        //Spawn player in center
+        Vector2 centerTile = new Vector2(gridWidth / 2, gridHeight / 2);
+
+        //SetUp 4 center tiles to start (predetermined)
+        tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].hexTileManager.SetTileActive(true); // x y (Empty)
+        tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].hexTileManager.Build(HexTileType.EMPTY,Quaternion.identity);
+
+        tiles[(int)centerTile.x + 1 + (int)centerTile.y * gridWidth].hexTileManager.SetTileActive(true); // x +1 y (Rock)
+        tiles[(int)centerTile.x + 1 + (int)centerTile.y * gridWidth].hexTileManager.SetTileOre(HexTileType.ROCK, 3);
+
+        tiles[(int)centerTile.x - 1 + (int)centerTile.y * gridWidth].hexTileManager.SetTileActive(true); // x -1 y (TownHall)
+        tiles[(int)centerTile.x - 1 + (int)centerTile.y * gridWidth].hexTileManager.Build(HexTileType.TOWNHALL, Quaternion.identity);
+
+        tiles[(int)centerTile.x +1 + ((int)centerTile.y + 1) * gridWidth].hexTileManager.SetTileActive(true); // x +1 y +1 (Empty)
+        tiles[(int)centerTile.x + 1 + ((int)centerTile.y + 1) * gridWidth].hexTileManager.Build(HexTileType.EMPTY, Quaternion.identity);
+
+        tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].hexTileManager.UnlockWallsArroundTile(tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].hexTileManager);
+        tiles[(int)centerTile.x + 1 + ((int)centerTile.y + 1) * gridWidth].hexTileManager.UnlockWallsArroundTile(tiles[(int)centerTile.x + 1 + ((int)centerTile.y + 1) * gridWidth].hexTileManager);
+
+        player.transform.SetPositionAndRotation(new Vector3(tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].tileObject.transform.position.x, 0.7f, tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].tileObject.transform.position.z), Quaternion.identity);
+        camera.transform.SetPositionAndRotation(new Vector3(camera.transform.position.x + player.transform.position.x, camera.transform.position.y + player.transform.position.y, camera.transform.position.z + player.transform.position.z), camera.transform.rotation);
+        camera.cameraOffset = camera.transform.position - camera.target.transform.position;
     }
 }
