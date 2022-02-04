@@ -47,15 +47,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  maxHp: 3
-  hp: 3
+  maxHp: 2
+  hp: 2
   orePerHit: 1
   childMesh: {fileID: 5974563421039542560}
   fullHPModel: {fileID: 373172561612030820, guid: 6b012beef2821e24fafd68218313bbfb, type: 3}
   halveHPModel: {fileID: 3168868095100922198, guid: 6b012beef2821e24fafd68218313bbfb, type: 3}
   lowHPModel: {fileID: 9005742282856678235, guid: 6b012beef2821e24fafd68218313bbfb, type: 3}
   exhaustedModel: {fileID: 0}
-  respawnTime: 2
+  respawnTime: 95
 --- !u!136 &273896925568760104
 CapsuleCollider:
   m_ObjectHideFlags: 0

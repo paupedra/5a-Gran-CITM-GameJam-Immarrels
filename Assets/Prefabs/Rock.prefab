@@ -46,15 +46,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb949655d13d584fb13c2e3023037dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 3
-  hp: 3
-  orePerHit: 1
+  type: 0
+  maxHp: 2
+  hp: 2
+  orePerHit: 3
   childMesh: {fileID: 8120306263855248287}
   fullHPModel: {fileID: -6900478876440243890, guid: 6b012beef2821e24fafd68218313bbfb, type: 3}
   halveHPModel: {fileID: 5447234818832796245, guid: 6b012beef2821e24fafd68218313bbfb, type: 3}
   lowHPModel: {fileID: 865732789920225048, guid: 6b012beef2821e24fafd68218313bbfb, type: 3}
   exhaustedModel: {fileID: 0}
-  respawnTime: 2
+  respawnTime: 45
 --- !u!136 &214141003
 CapsuleCollider:
   m_ObjectHideFlags: 0
