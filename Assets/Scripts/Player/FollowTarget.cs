@@ -28,7 +28,7 @@ public class FollowTarget : MonoBehaviour
         }
         else
         {
-            transform.LookAt(target);
+            //transform.LookAt(target);
         }
     }
 }
