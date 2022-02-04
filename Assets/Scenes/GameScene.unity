@@ -424,8 +424,8 @@ MonoBehaviour:
   mine: {fileID: 3186338158790391109, guid: 5c55f576d98419e41b3a50b42215b001, type: 3}
   foundary: {fileID: 6194242812547101722, guid: d668279d7a8987840ac743e912994efa, type: 3}
   centerTile: {x: 0, y: 0}
-  gridWidth: 20
-  gridHeight: 20
+  gridWidth: 40
+  gridHeight: 40
   radius: 1
 --- !u!4 &153174842
 Transform:
@@ -475,7 +475,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.8, y: 39.7}
+  m_AnchoredPosition: {x: -1.9, y: 39.7}
   m_SizeDelta: {x: 57.2211, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &182207068
@@ -499,7 +499,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 376d157c802a34140bc6dd98c2c4fe40, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 26
     m_FontStyle: 1
     m_BestFit: 0
@@ -1836,7 +1836,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 376d157c802a34140bc6dd98c2c4fe40, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 26
     m_FontStyle: 1
     m_BestFit: 0
@@ -3267,7 +3267,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.8, y: 39.7}
+  m_AnchoredPosition: {x: -4.2, y: 39.7}
   m_SizeDelta: {x: 57.2211, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2072684512
@@ -3291,7 +3291,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 376d157c802a34140bc6dd98c2c4fe40, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 26
     m_FontStyle: 1
     m_BestFit: 0
@@ -3303,7 +3303,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: aaaaa
+  m_Text: 1
 --- !u!222 &2072684513
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3439,6 +3439,18 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 839340622}
+    - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
+      propertyPath: coalCostText
+      value: 
+      objectReference: {fileID: 2072684512}
+    - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
+      propertyPath: rockCostText
+      value: 
+      objectReference: {fileID: 182207068}
+    - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
+      propertyPath: metalCostText
+      value: 
+      objectReference: {fileID: 1348570828}
     - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
       propertyPath: unlockTileImage
       value: 

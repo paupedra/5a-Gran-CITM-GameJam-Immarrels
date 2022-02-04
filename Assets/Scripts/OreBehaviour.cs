@@ -6,7 +6,8 @@ public enum OreType
 {
     ROCK,
     METAL,
-    COAL
+    COAL,
+    CLAY
 }
 
 public class OreBehaviour : MonoBehaviour
@@ -76,6 +77,10 @@ public class OreBehaviour : MonoBehaviour
 
                 case OreType.ROCK:
                     player.rock += orePerHit;
+                    break;
+
+                case OreType.CLAY:
+                    player.clay += orePerHit;
                     break;
             }
 

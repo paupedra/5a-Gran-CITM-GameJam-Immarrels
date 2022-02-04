@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public int rock = 0;
     public int coal = 0;
     public int metal = 0;
-    public int mud = 0;
+    public int clay = 0;
     public int brick = 0;
 
     float turnVelocity;
@@ -167,8 +167,8 @@ public class PlayerController : MonoBehaviour
             int diffY = (int)Mathf.Abs(wantToUnlockTile.y - gridManager.centerTile.y);
 
             rockCostUnlock = (int)(100*0.04*(diffX + diffY));
-            coalCostUnlock = (int)(75 * 0.04 * ((diffX + diffY) - 10));
-            metalCostUnlock = (int)(45 * 0.04 * ((diffX + diffY) - 20));
+            coalCostUnlock = (int)(75 * 0.04 * ((diffX + diffY) - 7));
+            metalCostUnlock = (int)(45 * 0.04 * ((diffX + diffY) - 14));
         }
 
     }

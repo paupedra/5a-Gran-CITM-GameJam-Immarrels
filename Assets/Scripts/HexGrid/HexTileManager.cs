@@ -130,6 +130,37 @@ public class HexTileManager : MonoBehaviour
 
     public void SetTileOre(HexTileType forcedType = HexTileType.EMPTY, int forcedAmount = 0)
     {
+        int diffX = (int)Mathf.Abs(x - gridManager.centerTile.x);
+        int diffY = (int)Mathf.Abs(y - gridManager.centerTile.y);
+
+        int circle = 0;
+
+        if(diffX + diffY <= 7)
+        {
+
+        }
+
+        //Inner circle
+        //15% empty tile
+        //55% rock tile
+        //15% coal
+        //10% metal
+        //5% Clay
+
+        //Mid Circle
+        //15% empty tile
+        //40% rock tile
+        //22% coal
+        //13% metal
+        //10% Clay
+
+        //Outer Circle
+        //15% empty tile
+        //30% rock tile
+        //26% coal
+        //15% metal
+        //14% Clay
+
         for (int i = 0; i < containedObjects.Length; i++)
         {
             Destroy(containedObjects[i]);
@@ -206,13 +237,6 @@ public class HexTileManager : MonoBehaviour
                     containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x+0.5f, oreHeight, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
                     containedObjects[1] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z+ 0.5f), Quaternion.identity, gameObject.transform);
                     containedObjects[2] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z - 0.5f), Quaternion.identity, gameObject.transform);
-                    break;
-
-                case 4:
-                    containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x+0.5f, oreHeight, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
-                    containedObjects[1] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z+ 0.5f), Quaternion.identity, gameObject.transform);
-                    containedObjects[2] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x+0.5f, oreHeight, gameObject.transform.position.z - 0.5f), Quaternion.identity, gameObject.transform);
-                    containedObjects[3] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z - 0.5f), Quaternion.identity, gameObject.transform);
                     break;
             }
 
