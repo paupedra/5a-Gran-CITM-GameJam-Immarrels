@@ -287,12 +287,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void ComputeUnlockTileCost()
+    {
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "UnlockTrigger")
         {
             unlockTileImage.SetActive(true);
             unlockTileImage.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + imageOffset);
+
         }
     }
 

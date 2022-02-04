@@ -157,7 +157,7 @@ public class HexTileManager : MonoBehaviour
             }
             else
             {
-                ore = Random.Range(0, 3);
+                ore = Random.Range(0, 4);
             }
 
             GameObject orePrefab = gridManager.rockOre;
@@ -179,6 +179,12 @@ public class HexTileManager : MonoBehaviour
                 case 2: //Metal
                     tileType = HexTileType.METAL;
                     orePrefab = gridManager.metalOre;
+
+                    break;
+
+                case 3: //Clay
+                    tileType = HexTileType.CLAY;
+                    orePrefab = gridManager.clayOre;
 
                     break;
             }
