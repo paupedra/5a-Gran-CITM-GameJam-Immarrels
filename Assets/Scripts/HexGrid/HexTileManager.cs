@@ -7,11 +7,13 @@ public enum HexTileType
     ROCK,
     COAL,
     METAL,
+    CLAY,
     PAVEMENT,
     TOWNHALL,
-    REFINERY, //chemaneia
-    SAWMILL,
-    QUARRY,
+    REFINERY, //Clay into bricks
+    QUARRY, //Rock
+    MINE, //Coal
+    FOUNDARY, //Metal
     EMPTY,
 }
 
@@ -85,32 +87,44 @@ public class HexTileManager : MonoBehaviour
 
     public void Build(HexTileType type, Quaternion rotation)
     {
-        for (int i = 0; i < containedObjects.Length; i++)
+        if(tileType != HexTileType.TOWNHALL)
         {
-            Destroy(containedObjects[i]);
-        }
+            for (int i = 0; i < containedObjects.Length; i++)
+            {
+                Destroy(containedObjects[i]);
+            }
 
-        switch (type)
-        {
-            case HexTileType.TOWNHALL:
-                containedObjects[0] = Instantiate(gridManager.townHall, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), rotation, gameObject.transform);
-                break;
+            switch (type)
+            {
+                case HexTileType.TOWNHALL:
+                    containedObjects[0] = Instantiate(gridManager.townHall, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), rotation, gameObject.transform);
+                    tileType = HexTileType.TOWNHALL;
+                    break;
 
-            case HexTileType.PAVEMENT:
-                containedObjects[0] = Instantiate(gridManager.pavement, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), rotation, gameObject.transform);
-                break;
+                case HexTileType.PAVEMENT:
+                    containedObjects[0] = Instantiate(gridManager.pavement, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), rotation, gameObject.transform);
+                    tileType = HexTileType.PAVEMENT;
+                    break;
 
-            case HexTileType.QUARRY:
-                containedObjects[0] = Instantiate(gridManager.quarry, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), rotation, gameObject.transform);
-                break;
+                case HexTileType.QUARRY:
+                    containedObjects[0] = Instantiate(gridManager.quarry, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), rotation, gameObject.transform);
+                    tileType = HexTileType.QUARRY;
+                    break;
 
-            case HexTileType.SAWMILL:
-                containedObjects[0] = Instantiate(gridManager.sawmill, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), rotation, gameObject.transform);
-                break;
+                case HexTileType.FOUNDARY:
+                    containedObjects[0] = Instantiate(gridManager.foundary, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), rotation, gameObject.transform);
+                    tileType = HexTileType.FOUNDARY;
+                    break;
+                case HexTileType.MINE:
+                    containedObjects[0] = Instantiate(gridManager.mine, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), rotation, gameObject.transform);
+                    tileType = HexTileType.MINE;
+                    break;
 
-            case HexTileType.REFINERY:
-                containedObjects[0] = Instantiate(gridManager.refinery, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), rotation, gameObject.transform);
-                break;
+                case HexTileType.REFINERY:
+                    containedObjects[0] = Instantiate(gridManager.refinery, new Vector3(gameObject.transform.position.x, 0.5f, gameObject.transform.position.z), rotation, gameObject.transform);
+                    tileType = HexTileType.REFINERY;
+                    break;
+            }
         }
     }
 

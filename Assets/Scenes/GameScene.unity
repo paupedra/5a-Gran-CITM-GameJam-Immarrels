@@ -356,15 +356,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 839340624}
+  minimapCamera: {fileID: 1089944727}
   hexTile: {fileID: 3830866654814144683, guid: 647c42805dbadab4d9420f1c96e89da2, type: 3}
   metalOre: {fileID: 1153772621246135185, guid: b5246eb50aa527d45928555f86534c4f, type: 3}
   coalOre: {fileID: 6660544793138881916, guid: 4a40ea79b1bbe7042bd80f016b5cedff, type: 3}
   rockOre: {fileID: 1972071253770319142, guid: b2926a543a54f334ea908fa154d5d269, type: 3}
+  clayOre: {fileID: 0}
   townHall: {fileID: 3735866907298715633, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
   pavement: {fileID: 3735866907298715633, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
-  sawmill: {fileID: 3735866907298715633, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
   refinery: {fileID: 3735866907298715633, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
   quarry: {fileID: 3735866907298715633, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+  mine: {fileID: 0}
+  foundary: {fileID: 0}
   gridWidth: 20
   gridHeight: 20
   radius: 1
