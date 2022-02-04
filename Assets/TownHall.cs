@@ -15,4 +15,16 @@ public class TownHall : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            if(Input.GetKey("q"))
+            {
+                //Open TownHall Menu
+                Debug.Log("Open Town hall Menu");
+            }
+        }
+    }
 }
