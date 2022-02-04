@@ -12,6 +12,7 @@ public class HexTile
 public class HexGridManager : MonoBehaviour
 {
     public FollowTarget camera;
+    public FollowTarget minimapCam;
     GameObject player;
 
     public GameObject hexTile; //prefab for the hexagonal tiles
@@ -120,8 +121,10 @@ public class HexGridManager : MonoBehaviour
         tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].hexTileManager.UnlockWallsArroundTile(tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].hexTileManager);
         tiles[(int)centerTile.x + 1 + ((int)centerTile.y + 1) * gridWidth].hexTileManager.UnlockWallsArroundTile(tiles[(int)centerTile.x + 1 + ((int)centerTile.y + 1) * gridWidth].hexTileManager);
 
-        player.transform.SetPositionAndRotation(new Vector3(tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].tileObject.transform.position.x, 0.7f, tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].tileObject.transform.position.z), Quaternion.identity);
+        player.transform.SetPositionAndRotation(new Vector3(tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].tileObject.transform.position.x, 0.5f, tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].tileObject.transform.position.z), Quaternion.identity);
         camera.transform.SetPositionAndRotation(new Vector3(camera.transform.position.x + player.transform.position.x, camera.transform.position.y + player.transform.position.y, camera.transform.position.z + player.transform.position.z), camera.transform.rotation);
         camera.cameraOffset = camera.transform.position - camera.target.transform.position;
+
+        minimapCam.transform.SetPositionAndRotation(new Vector3(minimapCam.transform.position.x + player.transform.position.x, minimapCam.transform.position.y, minimapCam.transform.position.z + player.transform.position.z), minimapCam.transform.rotation);
     }
 }

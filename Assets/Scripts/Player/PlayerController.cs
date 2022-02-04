@@ -36,13 +36,15 @@ public class PlayerController : MonoBehaviour
     public GameObject unlockTileImage;
     public Vector3 imageOffset = new Vector3(0f, 0f, 5f);
 
+    Animator animator;
+
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gridManager = GameObject.Find("HexGridManager").GetComponent<HexGridManager>();
         miningAreaObject.SetActive(false);
         miningAreaCollider = miningAreaObject.GetComponent<BoxCollider>();
-
+        animator = GetComponent<Animator>();
     }
 
 
@@ -147,6 +149,7 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        float magnitudeSpeed = Mathf.Clamp01(direction.magnitude);
 
         if (direction.magnitude >= 0.1f)
         {
@@ -156,7 +159,10 @@ public class PlayerController : MonoBehaviour
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDir.normalized * playerSpeed * Time.deltaTime);
+            
         }
+        
+        animator.SetFloat("Speed", magnitudeSpeed, 0.05f, Time.deltaTime);
         //-----
     }
 
