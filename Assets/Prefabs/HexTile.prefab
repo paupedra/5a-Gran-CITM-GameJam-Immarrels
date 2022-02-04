@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 3472117469234016977}
   - component: {fileID: 6333322181925145944}
   - component: {fileID: 8979722665858289472}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HexTile
   m_TagString: HaxTile
   m_Icon: {fileID: 0}

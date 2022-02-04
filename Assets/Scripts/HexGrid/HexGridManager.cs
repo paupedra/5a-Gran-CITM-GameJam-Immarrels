@@ -32,6 +32,8 @@ public class HexGridManager : MonoBehaviour
     public GameObject mine;
     public GameObject foundary;
 
+    public Vector2 centerTile;
+
     public int gridWidth = 10;
     public int gridHeight = 10;
 
@@ -109,7 +111,7 @@ public class HexGridManager : MonoBehaviour
     void SetStartingTiles()
     {
         //Spawn player in center
-        Vector2 centerTile = new Vector2(gridWidth / 2, gridHeight / 2);
+        centerTile = new Vector2(gridWidth / 2, gridHeight / 2);
 
         //SetUp 4 center tiles to start (predetermined)
         tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].hexTileManager.SetTileActive(true); // x y (Empty)

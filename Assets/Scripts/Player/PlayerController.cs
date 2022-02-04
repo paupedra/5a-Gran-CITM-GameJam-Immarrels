@@ -32,10 +32,22 @@ public class PlayerController : MonoBehaviour
     int tileHit = 0;
     int oldTileHit = -1;
 
+    public int currentPlayerTile = 0;
+
+    public Vector2 wantToUnlockTile;
+
+    public int coalCostUnlock =0;
+    public int metalCostUnlock=0;
+    public int rockCostUnlock=0;
+
     public Material greenTransparentMat;
     GameObject previewBuilding;
 
     public GameObject miningAreaObject;
+
+    public Text coalCostText;
+    public Text metalCostText;
+    public Text rockCostText;
 
     HexTileType buildingType = HexTileType.PAVEMENT;
 
@@ -62,7 +74,124 @@ public class PlayerController : MonoBehaviour
             MiningUpdate();
 
             BuildingUpdate();
+
+            CurrentTileRaycast();
         }
+    }
+
+    void ComputeUnlockTileCost(Collider other)
+    {
+        wantToUnlockTile = new Vector2(0,0);
+        bool even = false;
+
+        if(gridManager.tiles[currentPlayerTile].hexTileManager.y % 2 == 0)
+        {
+            even = true;
+        }
+
+        if (other.gameObject.name == "UnlockTileUpRight")
+        {
+            if(even)
+            {
+                wantToUnlockTile.x = 0;
+                wantToUnlockTile.y = 1;
+            }
+            else
+            {
+                wantToUnlockTile.x = 1;
+                wantToUnlockTile.y = 1;
+            }
+        }
+
+        if (other.gameObject.name == "UnlockTileUpLeft")
+        {
+            if (even)
+            {
+                wantToUnlockTile.x = -1;
+                wantToUnlockTile.y = 1;
+            }
+            else
+            {
+                wantToUnlockTile.x = 1;
+                wantToUnlockTile.y = 1;
+            }
+        }
+
+        if (other.gameObject.name == "UnlockTileRight")
+        {
+            wantToUnlockTile.x = 1;
+            wantToUnlockTile.y = 0;
+        }
+
+        if (other.gameObject.name == "UnlockTileLeft")
+        {
+            wantToUnlockTile.x = -1;
+            wantToUnlockTile.y = 0;
+        }
+
+        if (other.gameObject.name == "UnlockTileDownRight")
+        {
+            if (even)
+            {
+                wantToUnlockTile.x = 0;
+                wantToUnlockTile.y = -1;
+            }
+            else
+            {
+                wantToUnlockTile.x = 1;
+                wantToUnlockTile.y = -1;
+            }
+        }
+
+        if (other.gameObject.name == "UnlockTileDownLeft")
+        {
+            if (even)
+            {
+                wantToUnlockTile.x = -1;
+                wantToUnlockTile.y = -1;
+            }
+            else
+            {
+                wantToUnlockTile.x = 0;
+                wantToUnlockTile.y = -1;
+            }
+        }
+
+        wantToUnlockTile.x += gridManager.tiles[currentPlayerTile].hexTileManager.x;
+        wantToUnlockTile.y += gridManager.tiles[currentPlayerTile].hexTileManager.y;
+
+        if(wantToUnlockTile.x + wantToUnlockTile.y * gridManager.gridWidth <= gridManager.tiles.Length)
+        {
+            //Compute the cost based on the difference in x and y
+            int diffX = (int)Mathf.Abs(wantToUnlockTile.x - gridManager.centerTile.x);
+            int diffY = (int)Mathf.Abs(wantToUnlockTile.y - gridManager.centerTile.y);
+
+            rockCostUnlock = (int)(100*0.04*(diffX + diffY));
+            coalCostUnlock = (int)(75 * 0.04 * ((diffX + diffY) - 10));
+            metalCostUnlock = (int)(45 * 0.04 * ((diffX + diffY) - 20));
+        }
+
+    }
+
+    void CurrentTileRaycast()
+    {
+        Debug.DrawRay(transform.position, transform.TransformDirection(0, -1, 0), Color.yellow);
+
+
+        RaycastHit hit;
+        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y+1, transform.position.z), transform.TransformDirection(0, -1, 0), out hit, Mathf.Infinity, 1 << 6))
+        {
+            if (hit.transform.gameObject.tag == "HaxTile")
+            {
+                currentPlayerTile = int.Parse(hit.transform.gameObject.name);
+            }
+        }
+        else
+        {
+            Debug.Log("No hit bro");
+        }
+
+
     }
 
     void BuildingUpdate()
@@ -108,7 +237,7 @@ public class PlayerController : MonoBehaviour
             RaycastHit hit;
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit,1000,1<<6))
             {
                 if(hit.transform.gameObject.tag == "HaxTile")
                 {
@@ -291,11 +420,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ComputeUnlockTileCost()
-    {
-
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "UnlockTrigger")
@@ -303,6 +427,27 @@ public class PlayerController : MonoBehaviour
             unlockTileImage.SetActive(true);
             unlockTileImage.transform.position = Camera.main.WorldToScreenPoint(other.transform.position + imageOffset);
 
+            //Compute cost
+            ComputeUnlockTileCost(other);
+            rockCostText.text = rockCostUnlock.ToString();
+
+            if(metalCostUnlock > 0)
+            {
+                metalCostText.text = metalCostUnlock.ToString();
+            }
+            else
+            {
+                metalCostText.text = 0.ToString();
+            }
+
+            if (coalCostUnlock > 0)
+            {
+                coalCostText.text = coalCostUnlock.ToString();
+            }
+            else
+            {
+                coalCostText.text = 0.ToString();
+            }
         }
     }
 
