@@ -189,6 +189,67 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &97772295
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3735866907298715633, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+      propertyPath: m_Name
+      value: TownHall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598401581544693543, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598401581544693543, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598401581544693543, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598401581544693543, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598401581544693543, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598401581544693543, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598401581544693543, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598401581544693543, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598401581544693543, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598401581544693543, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598401581544693543, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046295651940704609, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9a767ddd851dcef499438bfa5bc934dd, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
 --- !u!1 &153016509
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,10 +361,10 @@ MonoBehaviour:
   coalOre: {fileID: 6660544793138881916, guid: 4a40ea79b1bbe7042bd80f016b5cedff, type: 3}
   rockOre: {fileID: 1972071253770319142, guid: b2926a543a54f334ea908fa154d5d269, type: 3}
   townHall: {fileID: 3735866907298715633, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
-  pavement: {fileID: 0}
-  sawmill: {fileID: 0}
-  refinery: {fileID: 0}
-  quarry: {fileID: 0}
+  pavement: {fileID: 3735866907298715633, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+  sawmill: {fileID: 3735866907298715633, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+  refinery: {fileID: 3735866907298715633, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+  quarry: {fileID: 3735866907298715633, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
   gridWidth: 20
   gridHeight: 20
   radius: 1
@@ -1203,6 +1264,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8375004733070724593, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 839340622}
     - target: {fileID: 8375004733070724593, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
       propertyPath: unlockTileImage
       value: 
