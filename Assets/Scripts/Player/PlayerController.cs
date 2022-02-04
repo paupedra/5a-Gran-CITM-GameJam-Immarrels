@@ -13,12 +13,15 @@ public class PlayerController : MonoBehaviour
     public CharacterController controller;
     public Camera camera;
 
+
     public float playerSpeed = 6.0f;
     public float playerTurnTime = 0.1f;
 
     public int rock = 0;
     public int coal = 0;
     public int metal = 0;
+    public int mud = 0;
+    public int brick = 0;
 
     float turnVelocity;
 
@@ -27,9 +30,12 @@ public class PlayerController : MonoBehaviour
     public float miningTime = 0.75f;
 
     int tileHit = 0;
+    int oldTileHit = -1;
+
+    public Material greenTransparentMat;
+    GameObject previewBuilding;
 
     public GameObject miningAreaObject;
-    BoxCollider miningAreaCollider;
 
     HexTileType buildingType = HexTileType.PAVEMENT;
 
@@ -43,7 +49,6 @@ public class PlayerController : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gridManager = GameObject.Find("HexGridManager").GetComponent<HexGridManager>();
         miningAreaObject.SetActive(false);
-        miningAreaCollider = miningAreaObject.GetComponent<BoxCollider>();
         animator = GetComponent<Animator>();
     }
 
@@ -65,27 +70,40 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown("b"))
         {
             playerMode = !playerMode;
+
+            if(!playerMode)
+            {
+                switch(buildingType)
+                {
+                    case HexTileType.PAVEMENT:
+                        previewBuilding = Instantiate(gridManager.pavement);
+                        break;
+
+                    case HexTileType.QUARRY:
+                        previewBuilding = Instantiate(gridManager.quarry);
+                        break;
+
+                    case HexTileType.MINE:
+                        previewBuilding = Instantiate(gridManager.mine);
+                        break;
+
+                    case HexTileType.FOUNDARY:
+                        previewBuilding = Instantiate(gridManager.foundary);
+                        break;
+
+                    case HexTileType.REFINERY:
+                        previewBuilding = Instantiate(gridManager.refinery);
+                        break;
+                }
+            }
+            else
+            {
+                Destroy(previewBuilding);
+            }
         }
 
         if(!playerMode)
         {
-            //Raycast mouse to tile (display building with transparency)
-            if(Input.GetKeyDown("1"))
-            {
-                buildingType = HexTileType.PAVEMENT;
-            }
-            if (Input.GetKeyDown("2"))
-            {
-                buildingType = HexTileType.REFINERY;
-            }
-            if (Input.GetKeyDown("3"))
-            {                          
-                buildingType = HexTileType.QUARRY;
-            }
-            if (Input.GetKeyDown("4"))
-            {
-                buildingType = HexTileType.SAWMILL;
-            }
 
             RaycastHit hit;
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -94,16 +112,81 @@ public class PlayerController : MonoBehaviour
             {
                 if(hit.transform.gameObject.tag == "HaxTile")
                 {
+                    oldTileHit = tileHit;
                     tileHit = int.Parse(hit.transform.gameObject.name);
                 }
 
             }
 
+            if(oldTileHit != tileHit && tileHit > 0 && tileHit < gridManager.gridWidth * gridManager.gridHeight)
+            {
+                //move building preview
+                previewBuilding.transform.SetPositionAndRotation(new Vector3(gridManager.tiles[tileHit].tileObject.transform.position.x,0.5f, gridManager.tiles[tileHit].tileObject.transform.position.z),Quaternion.identity);
+            }
 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) && tileHit > 0 && tileHit < gridManager.gridWidth * gridManager.gridHeight && gridManager.tiles[tileHit].hexTileManager.active)
             {
                 gridManager.tiles[tileHit].hexTileManager.Build(buildingType, Quaternion.identity);
             }
+        }
+    }
+
+    public void SetBuilding(HexTileType type)
+    {
+        //Raycast mouse to tile (display building with transparency)
+        switch(type)
+        {
+            case HexTileType.PAVEMENT:
+
+                if (buildingType != HexTileType.PAVEMENT)
+                {
+                    buildingType = HexTileType.PAVEMENT;
+                    Destroy(previewBuilding);
+                    previewBuilding = Instantiate(gridManager.pavement);
+                    previewBuilding.transform.SetPositionAndRotation(new Vector3(gridManager.tiles[tileHit].tileObject.transform.position.x, 0.5f, gridManager.tiles[tileHit].tileObject.transform.position.z), Quaternion.identity);
+                }
+
+                break;
+
+            case HexTileType.REFINERY:
+                if (buildingType != HexTileType.REFINERY)
+                {
+                    buildingType = HexTileType.REFINERY;
+                    Destroy(previewBuilding);
+                    previewBuilding = Instantiate(gridManager.refinery);
+                    previewBuilding.transform.SetPositionAndRotation(new Vector3(gridManager.tiles[tileHit].tileObject.transform.position.x, 0.5f, gridManager.tiles[tileHit].tileObject.transform.position.z), Quaternion.identity);
+                }
+                break;
+
+            case HexTileType.QUARRY:
+                if (buildingType != HexTileType.QUARRY)
+                {
+                    buildingType = HexTileType.QUARRY;
+                    Destroy(previewBuilding);
+                    previewBuilding = Instantiate(gridManager.quarry);
+                    previewBuilding.transform.SetPositionAndRotation(new Vector3(gridManager.tiles[tileHit].tileObject.transform.position.x, 0.5f, gridManager.tiles[tileHit].tileObject.transform.position.z), Quaternion.identity);
+                }
+                break;
+
+            case HexTileType.MINE:
+                if (buildingType != HexTileType.MINE)
+                {
+                    buildingType = HexTileType.MINE;
+                    Destroy(previewBuilding);
+                    previewBuilding = Instantiate(gridManager.mine);
+                    previewBuilding.transform.SetPositionAndRotation(new Vector3(gridManager.tiles[tileHit].tileObject.transform.position.x, 0.5f, gridManager.tiles[tileHit].tileObject.transform.position.z), Quaternion.identity);
+                }
+                break;
+
+            case HexTileType.FOUNDARY:
+                if (buildingType != HexTileType.FOUNDARY)
+                {
+                    buildingType = HexTileType.FOUNDARY;
+                    Destroy(previewBuilding);
+                    previewBuilding = Instantiate(gridManager.foundary);
+                    previewBuilding.transform.SetPositionAndRotation(new Vector3(gridManager.tiles[tileHit].tileObject.transform.position.x, 0.5f, gridManager.tiles[tileHit].tileObject.transform.position.z), Quaternion.identity);
+                }
+                break;
         }
     }
 

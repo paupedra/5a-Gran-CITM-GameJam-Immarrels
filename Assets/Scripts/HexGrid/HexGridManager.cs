@@ -12,7 +12,9 @@ public class HexTile
 public class HexGridManager : MonoBehaviour
 {
     public FollowTarget camera;
-    public FollowTarget minimapCam;
+
+    public FollowTarget minimapCamera;
+
     GameObject player;
 
     public GameObject hexTile; //prefab for the hexagonal tiles
@@ -20,11 +22,15 @@ public class HexGridManager : MonoBehaviour
     public GameObject metalOre;
     public GameObject coalOre;
     public GameObject rockOre;
+    public GameObject clayOre;
+
     public GameObject townHall;
     public GameObject pavement;
-    public GameObject sawmill;
     public GameObject refinery;
+
     public GameObject quarry;
+    public GameObject mine;
+    public GameObject foundary;
 
     public int gridWidth = 10;
     public int gridHeight = 10;
@@ -125,6 +131,8 @@ public class HexGridManager : MonoBehaviour
         camera.transform.SetPositionAndRotation(new Vector3(camera.transform.position.x + player.transform.position.x, camera.transform.position.y + player.transform.position.y, camera.transform.position.z + player.transform.position.z), camera.transform.rotation);
         camera.cameraOffset = camera.transform.position - camera.target.transform.position;
 
-        minimapCam.transform.SetPositionAndRotation(new Vector3(minimapCam.transform.position.x + player.transform.position.x, minimapCam.transform.position.y, minimapCam.transform.position.z + player.transform.position.z), minimapCam.transform.rotation);
+        minimapCamera.transform.SetPositionAndRotation(new Vector3(minimapCamera.transform.position.x + player.transform.position.x, minimapCamera.transform.position.y + player.transform.position.y, minimapCamera.transform.position.z + player.transform.position.z), minimapCamera.transform.rotation);
+        minimapCamera.cameraOffset = minimapCamera.transform.position - minimapCamera.target.transform.position;
+
     }
 }
