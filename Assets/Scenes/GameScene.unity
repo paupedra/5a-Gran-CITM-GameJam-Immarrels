@@ -424,8 +424,8 @@ MonoBehaviour:
   mine: {fileID: 3186338158790391109, guid: 5c55f576d98419e41b3a50b42215b001, type: 3}
   foundary: {fileID: 6194242812547101722, guid: d668279d7a8987840ac743e912994efa, type: 3}
   centerTile: {x: 0, y: 0}
-  gridWidth: 40
-  gridHeight: 40
+  gridWidth: 42
+  gridHeight: 42
   radius: 1
 --- !u!4 &153174842
 Transform:
