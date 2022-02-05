@@ -130,36 +130,80 @@ public class HexTileManager : MonoBehaviour
 
     public void SetTileOre(HexTileType forcedType = HexTileType.EMPTY, int forcedAmount = 0)
     {
-        int diffX = (int)Mathf.Abs(x - gridManager.centerTile.x);
-        int diffY = (int)Mathf.Abs(y - gridManager.centerTile.y);
-
-        int circle = 0;
-
-        if(diffX + diffY <= 7)
+        if(forcedType != HexTileType.EMPTY)
         {
+            int diffX = (int)Mathf.Abs(x - gridManager.centerTile.x);
+            int diffY = (int)Mathf.Abs(y - gridManager.centerTile.y);
 
+            int circle = 0;
+
+            if (diffX + diffY <= 7)
+            {
+                circle = 1;
+            }
+
+            if (diffX + diffY > 7 && diffX + diffY <= 14)
+            {
+                circle = 2;
+            }
+
+            if (diffX + diffY > 14 && diffX + diffY <= 21)
+            {
+                circle = 3;
+            }
+
+            int rng = Random.Range(0, 101);
+
+            int[] chances = new int[] { 15, 55, 15, 10, 5 };
+            int sum = 0;
+
+            switch (circle)
+            {
+                case 1:
+                    chances = new int[] { 15, 55, 15, 10, 5 };
+
+                    break;
+
+                case 2:
+                    chances = new int[] { 15, 40, 22, 13, 10 };
+                    break;
+
+                case 3:
+                    chances = new int[] { 15, 30, 26, 15, 14 };
+                    break;
+            }
+
+
+            for (int i = 0; i < chances.Length; i++)
+            {
+                sum += chances[i];
+
+                if (rng <= sum)
+                {
+                    switch (i)
+                    {
+                        case 0:
+                            forcedType = HexTileType.EMPTY;
+                            break;
+                        case 1:
+                            forcedType = HexTileType.ROCK;
+                            break;
+                        case 2:
+                            forcedType = HexTileType.COAL;
+                            break;
+                        case 3:
+                            forcedType = HexTileType.METAL;
+                            break;
+                        case 4:
+                            forcedType = HexTileType.CLAY;
+                            break;
+                    }
+                    break;
+                }
+
+            }
         }
-
-        //Inner circle
-        //15% empty tile
-        //55% rock tile
-        //15% coal
-        //10% metal
-        //5% Clay
-
-        //Mid Circle
-        //15% empty tile
-        //40% rock tile
-        //22% coal
-        //13% metal
-        //10% Clay
-
-        //Outer Circle
-        //15% empty tile
-        //30% rock tile
-        //26% coal
-        //15% metal
-        //14% Clay
+        
 
         for (int i = 0; i < containedObjects.Length; i++)
         {
