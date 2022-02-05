@@ -109,4 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectorType: 2
-  productionTime: 1
+  productionTime: 15
+  orePerProduction: 1

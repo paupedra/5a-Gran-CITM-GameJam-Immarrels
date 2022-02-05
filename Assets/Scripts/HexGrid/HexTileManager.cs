@@ -137,17 +137,17 @@ public class HexTileManager : MonoBehaviour
 
             int circle = 0;
 
-            if (diffX + diffY <= 7)
+            if (diffX + diffY <= 5)
             {
                 circle = 1;
             }
 
-            if (diffX + diffY > 7 && diffX + diffY <= 14)
+            if (diffX + diffY > 5 && diffX + diffY <= 10)
             {
                 circle = 2;
             }
 
-            if (diffX + diffY > 14 && diffX + diffY <= 21)
+            if (diffX + diffY > 10 && diffX + diffY <= 15)
             {
                 circle = 3;
             }

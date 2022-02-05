@@ -10,6 +10,8 @@ public class CollectorBuilding : MonoBehaviour
 
     float productionTimer = 0;
 
+    public int orePerProduction = 0;
+
     PlayerController player;
 
 

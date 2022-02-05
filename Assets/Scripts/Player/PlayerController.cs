@@ -25,6 +25,12 @@ public class PlayerController : MonoBehaviour
     public int clay = 0;
     public int brick = 0;
 
+    //Building Costs
+    int[] quarryCosts = new int[] {35,9,3};
+    int[] mineCosts = new int[] { 25, 15, 6 };
+    int[] foundaryCosts = new int[] { 25, 1, 14 };
+    int[] refineryCosts = new int[] { 50, 0, 0 };
+
     public Text coalText;
     public Text metalText;
     public Text rockText;
@@ -321,9 +327,40 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Mouse0) && tileHit > 0 && tileHit < gridManager.gridWidth * gridManager.gridHeight && gridManager.tiles[tileHit].hexTileManager.active)
             {
+
                 gridManager.tiles[tileHit].hexTileManager.Build(buildingType, Quaternion.identity);
             }
         }
+    }
+
+    bool ComputeCostBuilding(HexTileType type) //Returns true if player can afford building
+    {
+        bool ret = false;
+
+        switch(type)
+        {
+            case HexTileType.PAVEMENT:
+
+                break;
+
+            case HexTileType.FOUNDARY:
+
+                break;
+
+            case HexTileType.QUARRY:
+
+                break;
+
+            case HexTileType.MINE:
+
+                break;
+
+            case HexTileType.REFINERY:
+
+                break;
+        }
+
+        return ret;
     }
 
     void SetTransparentMaterial()
