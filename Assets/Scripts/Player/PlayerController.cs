@@ -448,9 +448,9 @@ public class PlayerController : MonoBehaviour
             previewBuilding.GetComponentInChildren<BoxCollider>().enabled = false;
         }
 
-        if(previewBuilding.GetComponent<OreBehaviour>() != null)
+        if(previewBuilding.GetComponent<CollectorBuilding>() != null)
         {
-            previewBuilding.GetComponent<OreBehaviour>().enabled = false;
+            previewBuilding.GetComponent<CollectorBuilding>().enabled = false;
         }
 
         if (previewBuilding.GetComponent<RefineryBehaviour>() != null)
