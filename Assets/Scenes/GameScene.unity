@@ -554,7 +554,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100000
+  m_Text: 50
 --- !u!222 &43272468
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -936,10 +936,10 @@ MonoBehaviour:
   clayOre: {fileID: 2310336133681236186, guid: f2bb54622776df846bcfa1bb8a3eed52, type: 3}
   townHall: {fileID: 8571484268558984964, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
   pavement: {fileID: 8571484268558984964, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
-  refinery: {fileID: 8571484268558984964, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
-  quarry: {fileID: 7460805731224835437, guid: 0eb2bcb644c969e4da998360b19f67ed, type: 3}
-  mine: {fileID: 3186338158790391109, guid: 5c55f576d98419e41b3a50b42215b001, type: 3}
-  foundary: {fileID: 6194242812547101722, guid: d668279d7a8987840ac743e912994efa, type: 3}
+  refinery: {fileID: 4361492575901923886, guid: caeacb092d9d01a459e4ea857347d3e9, type: 3}
+  quarry: {fileID: 1416287825774902847, guid: 2cf114592897fa840b06c5c9fa2b6ea5, type: 3}
+  mine: {fileID: 3526159787231190437, guid: 5c55f576d98419e41b3a50b42215b001, type: 3}
+  foundary: {fileID: 3129782753643299205, guid: d668279d7a8987840ac743e912994efa, type: 3}
   centerTile: {x: 0, y: 0}
   gridWidth: 30
   gridHeight: 30
@@ -4011,7 +4011,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 119
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -4621,7 +4621,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100000
+  m_Text: 0
 --- !u!222 &1028878067
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4765,7 +4765,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5271,7 +5271,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100000
+  m_Text: 0
 --- !u!222 &1201414078
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7324,63 +7324,6 @@ RectTransform:
   m_AnchoredPosition: {x: -75, y: 75}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1001 &1926723989
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6783326485497430730, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6783326485497430730, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 35.98262
-      objectReference: {fileID: 0}
-    - target: {fileID: 6783326485497430730, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.32978335
-      objectReference: {fileID: 0}
-    - target: {fileID: 6783326485497430730, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 28.068054
-      objectReference: {fileID: 0}
-    - target: {fileID: 6783326485497430730, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6783326485497430730, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6783326485497430730, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6783326485497430730, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6783326485497430730, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6783326485497430730, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6783326485497430730, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8571484268558984964, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
-      propertyPath: m_Name
-      value: TownHall
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
 --- !u!1 &1941497476
 GameObject:
   m_ObjectHideFlags: 0

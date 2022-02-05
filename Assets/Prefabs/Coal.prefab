@@ -58,7 +58,7 @@ MonoBehaviour:
   halveHPModel: {fileID: 3168868095100922198, guid: 6b012beef2821e24fafd68218313bbfb, type: 3}
   lowHPModel: {fileID: 9005742282856678235, guid: 6b012beef2821e24fafd68218313bbfb, type: 3}
   exhaustedModel: {fileID: 7103768098424384812, guid: 299a34b653c9d394ba8a0d1f25ae4826, type: 3}
-  respawnTime: 75
+  respawnTime: 55
 --- !u!136 &6900624204055565035
 CapsuleCollider:
   m_ObjectHideFlags: 0

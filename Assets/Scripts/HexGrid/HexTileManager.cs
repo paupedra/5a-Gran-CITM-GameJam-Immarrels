@@ -291,16 +291,16 @@ public class HexTileManager : MonoBehaviour
                     chances = new int[] { 0, 100, 0,0, 0 };
                     break;
                 case 1:
-                    chances = new int[] { 15, 55, 15, 10, 5 };
+                    chances = new int[] { 15, 50, 15, 10, 10 };
 
                     break;
 
                 case 2:
-                    chances = new int[] { 15, 40, 22, 13, 10 };
+                    chances = new int[] { 15, 35, 22, 13, 15 };
                     break;
 
                 case 3:
-                    chances = new int[] { 15, 30, 26, 15, 14 };
+                    chances = new int[] { 15, 20, 26, 15, 24 };
                     break;
             }
 
