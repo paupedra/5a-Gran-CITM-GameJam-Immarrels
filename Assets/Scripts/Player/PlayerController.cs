@@ -405,7 +405,6 @@ public class PlayerController : MonoBehaviour
 
     void SetTransparentMaterial()
     {
-        //previewBuilding.GetComponent<MeshRenderer>().material = greenTransparentMat;
 
         if(previewBuilding.GetComponent<MeshRenderer>() != null)
         {
@@ -429,6 +428,15 @@ public class PlayerController : MonoBehaviour
             {
                 previewBuilding.GetComponentInChildren<MeshRenderer>().material = redTransparentMat;
             }
+        }
+
+        if (previewBuilding.GetComponent<BoxCollider>() != null)
+        {
+            previewBuilding.GetComponent<BoxCollider>().enabled = false;
+        }
+        else
+        {
+            previewBuilding.GetComponentInChildren<BoxCollider>().enabled = false;
         }
 
     }
