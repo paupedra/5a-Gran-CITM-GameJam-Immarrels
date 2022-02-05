@@ -52,11 +52,12 @@ MonoBehaviour:
   maxHp: 2
   hp: 2
   orePerHit: 2
+  floatingText: {fileID: 8717052149153365816, guid: b3f8a0206ec877d42aa5384b9019dcf6, type: 3}
   childMesh: {fileID: 6371214920426152946}
   fullHPModel: {fileID: 373172561612030820, guid: 6b012beef2821e24fafd68218313bbfb, type: 3}
   halveHPModel: {fileID: 3168868095100922198, guid: 6b012beef2821e24fafd68218313bbfb, type: 3}
   lowHPModel: {fileID: 9005742282856678235, guid: 6b012beef2821e24fafd68218313bbfb, type: 3}
-  exhaustedModel: {fileID: 0}
+  exhaustedModel: {fileID: 7103768098424384812, guid: 299a34b653c9d394ba8a0d1f25ae4826, type: 3}
   respawnTime: 75
 --- !u!136 &6900624204055565035
 CapsuleCollider:

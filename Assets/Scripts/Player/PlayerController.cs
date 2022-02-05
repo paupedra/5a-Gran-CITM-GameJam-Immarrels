@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public int metal = 0;
     public int clay = 0;
     public int brick = 0;
+
+    public int shootCost = 10;
 
     //Building Costs
     int[] quarryCosts = new int[] {35,9,3};
@@ -59,6 +61,8 @@ public class PlayerController : MonoBehaviour
     GameObject previewBuilding;
 
     public GameObject miningAreaObject;
+
+    public GameObject projectile;
 
     public GameObject buildMenu;
 
@@ -326,8 +330,13 @@ public class PlayerController : MonoBehaviour
                 previewBuilding.transform.SetPositionAndRotation(new Vector3(gridManager.tiles[tileHit].tileObject.transform.position.x,0.5f, gridManager.tiles[tileHit].tileObject.transform.position.z),Quaternion.identity);
             }
 
-            if (Input.GetKeyDown(KeyCode.Mouse0) && tileHit > 0 && tileHit < gridManager.gridWidth * gridManager.gridHeight && gridManager.tiles[tileHit].hexTileManager.active)
+            if (Input.GetKeyDown(KeyCode.Mouse0) && tileHit > 0 && tileHit < gridManager.gridWidth * gridManager.gridHeight && gridManager.tiles[tileHit].hexTileManager.active && !EventSystem.current.IsPointerOverGameObject())
             {
+                if(tileHit == currentPlayerTile)
+                {
+                    return;
+                }
+
                 if(ComputeCostBuilding(buildingType,true))
                 {
                     gridManager.tiles[tileHit].hexTileManager.Build(buildingType, Quaternion.identity);
@@ -439,6 +448,15 @@ public class PlayerController : MonoBehaviour
             previewBuilding.GetComponentInChildren<BoxCollider>().enabled = false;
         }
 
+        if(previewBuilding.GetComponent<OreBehaviour>() != null)
+        {
+            previewBuilding.GetComponent<OreBehaviour>().enabled = false;
+        }
+
+        if (previewBuilding.GetComponent<RefineryBehaviour>() != null)
+        {
+            previewBuilding.GetComponent<RefineryBehaviour>().enabled = false;
+        }
     }
 
     public void SetBuilding(HexTileType type)
@@ -534,6 +552,12 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("Mining", true);
             }
 
+            //Shoot logic
+            if(Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                Shoot();
+            }
+
         }
 
         if (mining)
@@ -547,6 +571,20 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("Mining", false);
             }
         }
+
+
+    }
+
+    void Shoot()
+    {
+        if(brick >= shootCost)
+        {
+            brick -= shootCost;
+            Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.rotation);
+            Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y +30, transform.rotation.eulerAngles.z)));
+            Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - 30, transform.rotation.eulerAngles.z)));
+        }
+        
     }
 
     void MovementUpdate()

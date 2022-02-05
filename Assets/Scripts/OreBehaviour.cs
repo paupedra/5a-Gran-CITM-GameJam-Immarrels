@@ -21,6 +21,8 @@ public class OreBehaviour : MonoBehaviour
     public int hp = 3; //Amount of times it can be hit
     public int orePerHit = 1;
 
+    public GameObject floatingText;
+
     bool exhausted;
 
     public MeshFilter childMesh;
@@ -90,6 +92,7 @@ public class OreBehaviour : MonoBehaviour
 
             hp--;
             particles.Play();
+            ShowOreCollected(orePerHit.ToString());
 
             if (hp == 2)
             {
@@ -112,5 +115,12 @@ public class OreBehaviour : MonoBehaviour
         }
        
 
+    }
+
+    void ShowOreCollected(string text)
+    {
+        GameObject obj = Instantiate(floatingText, transform.position, Quaternion.identity);
+        string finalText = "+" + text;
+        obj.GetComponentInChildren<TextMesh>().text = finalText;
     }
 }
