@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class HexTile
 {
     public GameObject tileObject;
@@ -17,7 +17,8 @@ public class HexGridManager : MonoBehaviour
 
     GameObject player;
 
-   
+    public int corruptedTiles = 0;
+    public Text corruptionText;
 
     public GameObject hexTile; //prefab for the hexagonal tiles
 
@@ -62,6 +63,12 @@ public class HexGridManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        corruptionText.text = string.Concat(((float)corruptedTiles / (float)(tiles.Length - 1) * 100).ToString()," % Corruption");
+
+        if(corruptedTiles >= tiles.Length-1)
+        {
+            Debug.Log("Loser game");
+        }
         
     }
 
@@ -101,7 +108,7 @@ public class HexGridManager : MonoBehaviour
 
                 newHexTile.hexTileManager.SetTileOre();
 
-                newHexTile.hexTileManager.SetTileActive(false);
+                //newHexTile.hexTileManager.SetTileActive(false);
 
                 tiles[x + y * gridWidth] = newHexTile;
             }
@@ -117,7 +124,6 @@ public class HexGridManager : MonoBehaviour
     void SetStartingTiles()
     {
         //Spawn player in center
-        centerTile = new Vector2(gridWidth / 2, gridHeight / 2);
 
         //SetUp 4 center tiles to start (predetermined)
         tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].hexTileManager.SetTileActive(true); // x y (Empty)
@@ -142,5 +148,12 @@ public class HexGridManager : MonoBehaviour
         minimapCamera.transform.SetPositionAndRotation(new Vector3(minimapCamera.transform.position.x + player.transform.position.x, minimapCamera.transform.position.y + player.transform.position.y, minimapCamera.transform.position.z + player.transform.position.z), minimapCamera.transform.rotation);
         minimapCamera.cameraOffset = minimapCamera.transform.position - minimapCamera.target.transform.position;
 
+
+        //Set Starting Corrupted Tile
+
+        tiles[0].hexTileManager.CorruptTile();
+        tiles[tiles.Length-1].hexTileManager.CorruptTile();
+        //tiles[gridWidth-1].hexTileManager.CorruptTile();
+        //tiles[(gridHeight-1) * gridWidth].hexTileManager.CorruptTile();
     }
 }

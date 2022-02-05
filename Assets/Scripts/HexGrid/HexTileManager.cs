@@ -29,7 +29,14 @@ public class HexTileManager : MonoBehaviour
 
     public bool active = false;
 
+    public bool corrupted = false;
+    public float corruptionTime = 5;
+    float corruptionTimer = 0;
+
     public float oreHeight= 0.5f;
+
+    public Material uncorruptedMaterial;
+    public Material corruptedMaterial;
 
     public HexGridManager gridManager;
 
@@ -69,7 +76,27 @@ public class HexTileManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Update Corruption
+        if(corrupted)
+        {
+            UpdateCorruption();
+            
+        }
+
+    }
+
+    public void CorruptTile()
+    {
+        gameObject.GetComponentInChildren<MeshRenderer>().material = corruptedMaterial;
+        corrupted = true;
+        gridManager.corruptedTiles++;
+    }
+
+    public void UncorruptTile()
+    {
+        gameObject.GetComponentInChildren<MeshRenderer>().material = uncorruptedMaterial;
+        corrupted = false;
+        gridManager.corruptedTiles--;
     }
 
     public void SetTileActive(bool _active)
@@ -83,6 +110,101 @@ public class HexTileManager : MonoBehaviour
         {
             active = false;
             gameObject.SetActive(false);
+        }
+    }
+
+    void UpdateCorruption()
+    {
+        corruptionTimer += Time.deltaTime;
+
+        if (corruptionTimer >= corruptionTime)
+        {
+            int a = Random.Range(0, 2);
+            if(a == 0)
+            {
+                return;
+            }
+
+            bool _corruped = false;
+            int tilesChecked = 0;
+            int i = 0;
+            while (!_corruped && tilesChecked < 6)
+            {
+                int rng = i; //Random.Range(0, 7);
+                corruptionTimer = 0;
+                switch (rng)
+                {
+                    case 1:
+                        if (tileUpRight != null)
+                        {
+                            if (!tileUpRight.corrupted)
+                            {
+                                tileUpRight.CorruptTile();
+                                _corruped = true;
+                            }
+                        }
+
+                        tilesChecked++;
+                        break;
+                    case 2:
+                        if (tileRight != null)
+                        {
+                            if (!tileRight.corrupted)
+                            {
+                                tileRight.CorruptTile();
+                                _corruped = true;
+                            }
+                        }
+                        tilesChecked++;
+                        break;
+                    case 3:
+                        if (tileUpLeft != null)
+                        {
+                            if (!tileUpLeft.corrupted)
+                            {
+                                tileUpLeft.CorruptTile();
+                                _corruped = true;
+                            }
+                        }
+                        tilesChecked++;
+                        break;
+                    case 4:
+                        if (tileLeft != null)
+                        {
+                            if (!tileLeft.corrupted)
+                            {
+                                tileLeft.CorruptTile();
+                                _corruped = true;
+                            }
+                        }
+                        tilesChecked++;
+                        break;
+                    case 5:
+                        if (tileDownRight != null)
+                        {
+                            if (!tileDownRight.corrupted)
+                            {
+                                tileDownRight.CorruptTile();
+                                _corruped = true;
+                            }
+                        }
+                        tilesChecked++;
+                        break;
+                    case 6:
+                        if (tileDownLeft != null)
+                        {
+                            if (!tileDownLeft.corrupted)
+                            {
+                                tileDownLeft.CorruptTile();
+                                _corruped = true;
+                            }
+                        }
+                        tilesChecked++;
+                        break;
+                }
+                i++;
+            }
+
         }
     }
 
