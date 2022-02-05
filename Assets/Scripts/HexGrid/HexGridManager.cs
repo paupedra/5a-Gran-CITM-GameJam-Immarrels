@@ -17,6 +17,8 @@ public class HexGridManager : MonoBehaviour
 
     GameObject player;
 
+   
+
     public GameObject hexTile; //prefab for the hexagonal tiles
 
     public GameObject metalOre;
@@ -51,6 +53,8 @@ public class HexGridManager : MonoBehaviour
         GenerateGrid();
 
         SetStartingTiles();
+
+
     }
 
     // Update is called once per frame

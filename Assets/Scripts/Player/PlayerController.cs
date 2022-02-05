@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public CharacterController controller;
     public Camera camera;
 
+    public GameObject pickIcon;
+    public GameObject buildIcon;
 
     public float playerSpeed = 6.0f;
     public float playerTurnTime = 0.1f;
@@ -22,6 +24,12 @@ public class PlayerController : MonoBehaviour
     public int metal = 0;
     public int clay = 0;
     public int brick = 0;
+
+    public Text coalText;
+    public Text metalText;
+    public Text rockText;
+    public Text clayText;
+    public Text brickText;
 
     float turnVelocity;
 
@@ -45,11 +53,13 @@ public class PlayerController : MonoBehaviour
 
     public GameObject miningAreaObject;
 
+    public GameObject buildMenu;
+
     public Text coalCostText;
     public Text metalCostText;
     public Text rockCostText;
 
-    HexTileType buildingType = HexTileType.PAVEMENT;
+    HexTileType buildingType = HexTileType.TOWNHALL;
 
     public GameObject unlockTileImage;
     public Vector3 imageOffset = new Vector3(0f, 0f, 5f);
@@ -66,6 +76,11 @@ public class PlayerController : MonoBehaviour
         gridManager = GameObject.Find("HexGridManager").GetComponent<HexGridManager>();
         miningAreaObject.SetActive(false);
         animator = GetComponent<Animator>();
+
+        pickIcon.SetActive(true);
+        buildIcon.SetActive(false);
+
+        buildMenu.SetActive(false);
     }
 
 
@@ -92,6 +107,12 @@ public class PlayerController : MonoBehaviour
                     animator.SetBool("Unlock", false);
                 }
             }
+
+            coalText.text = coal.ToString();
+            metalText.text = metal.ToString();
+            rockText.text = rock.ToString();
+            clayText.text = clay.ToString();
+            brickText.text = brick.ToString();
 
         }
     }
@@ -186,6 +207,15 @@ public class PlayerController : MonoBehaviour
             rockCostUnlock = (int)(100*0.04*(diffX + diffY));
             coalCostUnlock = (int)(75 * 0.04 * ((diffX + diffY) - 7));
             metalCostUnlock = (int)(45 * 0.04 * ((diffX + diffY) - 14));
+
+            if(coalCostUnlock < 0)
+            {
+                coalCostUnlock = 0;
+            }
+            if (metalCostUnlock < 0)
+            {
+                metalCostUnlock = 0;
+            }
         }
 
     }
@@ -217,9 +247,22 @@ public class PlayerController : MonoBehaviour
         {
             playerMode = !playerMode;
 
+            if(playerMode)
+            {
+                pickIcon.SetActive(true);
+                buildIcon.SetActive(false);
+                buildMenu.SetActive(false);
+            }
+            else
+            {
+                pickIcon.SetActive(false);
+                buildIcon.SetActive(true);
+                buildMenu.SetActive(true);
+            }
+
             if(!playerMode)
             {
-                switch(buildingType)
+                switch (buildingType)
                 {
                     case HexTileType.PAVEMENT:
                         previewBuilding = Instantiate(gridManager.pavement);
@@ -240,7 +283,13 @@ public class PlayerController : MonoBehaviour
                     case HexTileType.REFINERY:
                         previewBuilding = Instantiate(gridManager.refinery);
                         break;
+
+                    case HexTileType.TOWNHALL:
+                        previewBuilding = Instantiate(gridManager.refinery);
+                        break;
                 }
+
+                SetTransparentMaterial();
             }
             else
             {
@@ -275,6 +324,21 @@ public class PlayerController : MonoBehaviour
                 gridManager.tiles[tileHit].hexTileManager.Build(buildingType, Quaternion.identity);
             }
         }
+    }
+
+    void SetTransparentMaterial()
+    {
+        //previewBuilding.GetComponent<MeshRenderer>().material = greenTransparentMat;
+
+        if(previewBuilding.GetComponent<MeshRenderer>() != null)
+        {
+            previewBuilding.GetComponent<MeshRenderer>().material = greenTransparentMat;
+        }
+        else
+        {
+            previewBuilding.GetComponentInChildren<MeshRenderer>().material = greenTransparentMat;
+        }
+
     }
 
     public void SetBuilding(HexTileType type)
@@ -333,7 +397,18 @@ public class PlayerController : MonoBehaviour
                     previewBuilding.transform.SetPositionAndRotation(new Vector3(gridManager.tiles[tileHit].tileObject.transform.position.x, 0.5f, gridManager.tiles[tileHit].tileObject.transform.position.z), Quaternion.identity);
                 }
                 break;
+            case HexTileType.TOWNHALL:
+                if (buildingType != HexTileType.TOWNHALL)
+                {
+                    buildingType = HexTileType.TOWNHALL;
+                    Destroy(previewBuilding);
+                    previewBuilding = Instantiate(gridManager.townHall);
+                    previewBuilding.transform.SetPositionAndRotation(new Vector3(gridManager.tiles[tileHit].tileObject.transform.position.x, 0.5f, gridManager.tiles[tileHit].tileObject.transform.position.z), Quaternion.identity);
+                }
+                break;
         }
+
+        SetTransparentMaterial();
     }
 
     public void StartBuildingMode()
@@ -401,6 +476,18 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKey("e"))
         {
+            if(coal >= coalCostUnlock && rock >= rockCostUnlock && metal >= metalCostUnlock)
+            {
+                coal -= coalCostUnlock;
+                rock -= rockCostUnlock;
+                metal -= metalCostUnlock;
+            }
+            else
+            {
+                return;
+            }
+
+
             if(other.gameObject.name == "UnlockTileUpRight")
             {
                 other.gameObject.GetComponentInParent<HexTileManager>().UnlockUpRightTile();

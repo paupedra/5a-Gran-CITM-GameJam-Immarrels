@@ -493,8 +493,8 @@ MonoBehaviour:
   rockOre: {fileID: 1972071253770319142, guid: b2926a543a54f334ea908fa154d5d269, type: 3}
   clayOre: {fileID: 2310336133681236186, guid: f2bb54622776df846bcfa1bb8a3eed52, type: 3}
   townHall: {fileID: 8571484268558984964, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
-  pavement: {fileID: 3735866907298715633, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
-  refinery: {fileID: 3735866907298715633, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+  pavement: {fileID: 8571484268558984964, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
+  refinery: {fileID: 8571484268558984964, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
   quarry: {fileID: 7460805731224835437, guid: 0eb2bcb644c969e4da998360b19f67ed, type: 3}
   mine: {fileID: 3186338158790391109, guid: 5c55f576d98419e41b3a50b42215b001, type: 3}
   foundary: {fileID: 6194242812547101722, guid: d668279d7a8987840ac743e912994efa, type: 3}
@@ -3788,6 +3788,38 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 839340622}
     - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
+      propertyPath: clayText
+      value: 
+      objectReference: {fileID: 1480521393}
+    - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
+      propertyPath: coalText
+      value: 
+      objectReference: {fileID: 1591457223}
+    - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
+      propertyPath: pickIcon
+      value: 
+      objectReference: {fileID: 1381893442}
+    - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
+      propertyPath: rockText
+      value: 
+      objectReference: {fileID: 24754451}
+    - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
+      propertyPath: brickText
+      value: 
+      objectReference: {fileID: 2073161700}
+    - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
+      propertyPath: buildIcon
+      value: 
+      objectReference: {fileID: 467158240}
+    - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
+      propertyPath: buildMenu
+      value: 
+      objectReference: {fileID: 323067628}
+    - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
+      propertyPath: metalText
+      value: 
+      objectReference: {fileID: 589719523}
+    - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
       propertyPath: coalCostText
       value: 
       objectReference: {fileID: 2072684512}
@@ -3803,6 +3835,10 @@ PrefabInstance:
       propertyPath: unlockTileImage
       value: 
       objectReference: {fileID: 764600744}
+    - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
+      propertyPath: greenTransparentMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 9a767ddd851dcef499438bfa5bc934dd, type: 2}
     - target: {fileID: 4708929004372995010, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
       propertyPath: m_Name
       value: Player
