@@ -944,6 +944,7 @@ MonoBehaviour:
   gridWidth: 30
   gridHeight: 30
   radius: 1
+  showAllTiles: 0
 --- !u!4 &153174842
 Transform:
   m_ObjectHideFlags: 0

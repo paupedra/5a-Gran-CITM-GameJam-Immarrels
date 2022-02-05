@@ -44,6 +44,8 @@ public class HexGridManager : MonoBehaviour
 
     public HexTile[] tiles;
 
+    public bool showAllTiles = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -108,7 +110,11 @@ public class HexGridManager : MonoBehaviour
 
                 newHexTile.hexTileManager.SetTileOre();
 
-                //newHexTile.hexTileManager.SetTileActive(false);
+                if(!showAllTiles)
+                {
+                    newHexTile.hexTileManager.SetTileActive(false);
+                }
+
 
                 tiles[x + y * gridWidth] = newHexTile;
             }
