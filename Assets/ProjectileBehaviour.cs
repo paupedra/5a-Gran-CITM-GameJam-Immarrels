@@ -6,6 +6,9 @@ public class ProjectileBehaviour : MonoBehaviour
 {
     Rigidbody body;
     public float speed = 5;
+    public float lifeTime = 3;
+
+    float lifeTimer = 0;
 
     HexGridManager gridManager;
 
@@ -20,13 +23,21 @@ public class ProjectileBehaviour : MonoBehaviour
     void Update()
     {
         body.velocity = new Vector3(transform.forward.x * speed,0,transform.forward.z * speed );
+
+        lifeTimer += Time.deltaTime;
+
+        if(lifeTimer >= lifeTime)
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     private void OnTriggerStay(Collider other)
     {
         if(other.tag == "HaxTile")
         {
-            
+            gridManager.tiles[int.Parse(other.gameObject.name)].hexTileManager.UncorruptTile();
         }
     }
 }

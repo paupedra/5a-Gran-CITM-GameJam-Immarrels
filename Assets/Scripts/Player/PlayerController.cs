@@ -415,29 +415,24 @@ public class PlayerController : MonoBehaviour
     void SetTransparentMaterial()
     {
 
-        if(previewBuilding.GetComponent<MeshRenderer>() != null)
+        MeshRenderer[] renderers = previewBuilding.GetComponentsInChildren<MeshRenderer>();
+
+        if (ComputeCostBuilding(buildingType, false))
         {
-            if(ComputeCostBuilding(buildingType,false))
+            for(int i =0;i<renderers.Length;i++)
             {
-                previewBuilding.GetComponent<MeshRenderer>().material = greenTransparentMat;
-            }
-            else
-            {
-                previewBuilding.GetComponent<MeshRenderer>().material = redTransparentMat;
+                renderers[i].material = greenTransparentMat;
             }
             
         }
         else
         {
-            if (ComputeCostBuilding(buildingType, false))
+            for (int i = 0; i < renderers.Length; i++)
             {
-                previewBuilding.GetComponentInChildren<MeshRenderer>().material = greenTransparentMat;
-            }
-            else
-            {
-                previewBuilding.GetComponentInChildren<MeshRenderer>().material = redTransparentMat;
+                renderers[i].material = redTransparentMat;
             }
         }
+
 
         if (previewBuilding.GetComponent<BoxCollider>() != null)
         {
