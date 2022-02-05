@@ -492,7 +492,7 @@ MonoBehaviour:
   coalOre: {fileID: 6660544793138881916, guid: 4a40ea79b1bbe7042bd80f016b5cedff, type: 3}
   rockOre: {fileID: 1972071253770319142, guid: b2926a543a54f334ea908fa154d5d269, type: 3}
   clayOre: {fileID: 2310336133681236186, guid: f2bb54622776df846bcfa1bb8a3eed52, type: 3}
-  townHall: {fileID: 3735866907298715633, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
+  townHall: {fileID: 8571484268558984964, guid: 7b0cfd26080e33c4389b0f74b682ef1b, type: 3}
   pavement: {fileID: 3735866907298715633, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
   refinery: {fileID: 3735866907298715633, guid: ddd006f38938cb740a24cc26f6a2bc64, type: 3}
   quarry: {fileID: 7460805731224835437, guid: 0eb2bcb644c969e4da998360b19f67ed, type: 3}
