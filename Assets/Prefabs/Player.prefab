@@ -1061,7 +1061,6 @@ Transform:
   m_Children:
   - {fileID: 5448470537157754471}
   - {fileID: 451199556421521900}
-  - {fileID: 5141790392645123719}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1121,8 +1120,19 @@ MonoBehaviour:
   rock: 0
   coal: 0
   metal: 0
+  clay: 0
+  brick: 0
   miningTime: 0.75
+  currentPlayerTile: 0
+  wantToUnlockTile: {x: 0, y: 0}
+  coalCostUnlock: 0
+  metalCostUnlock: 0
+  rockCostUnlock: 0
+  greenTransparentMat: {fileID: 0}
   miningAreaObject: {fileID: 5141790392645123712}
+  coalCostText: {fileID: 0}
+  metalCostText: {fileID: 0}
+  rockCostText: {fileID: 0}
   unlockTileImage: {fileID: 0}
   imageOffset: {x: 0, y: 0, z: 5}
 --- !u!1 &4800011153299097753
@@ -1213,12 +1223,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5141790392645123712}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39600003, z: 0}
-  m_LocalScale: {x: 0.39999998, y: 0.39999998, z: 0.39999998}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.026004, y: 0, z: 0}
+  m_LocalScale: {x: 0.084004, y: 0.20963198, z: 1}
   m_Children: []
-  m_Father: {fileID: 5337514702075326840}
-  m_RootOrder: 2
+  m_Father: {fileID: 5141790392731416864}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5141790392645123717
 BoxCollider:
@@ -1231,8 +1241,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.6352322, y: 1, z: 1.8537998}
-  m_Center: {x: 0.08229181, y: 0, z: 1.1459721}
+  m_Size: {x: 162.39499, y: 285.29395, z: 34.819305}
+  m_Center: {x: 4.790158, y: 142.14691, z: 0.48738983}
 --- !u!114 &5141790392645123718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1272,6 +1282,7 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
+  - {fileID: 5141790392645123719}
   - {fileID: 5141790393569513264}
   m_Father: {fileID: 6065711946337446235}
   m_RootOrder: 0
@@ -1306,7 +1317,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5141790392731416864}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5141790393569513270
 MeshFilter:

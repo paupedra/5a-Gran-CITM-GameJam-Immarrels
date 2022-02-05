@@ -56,6 +56,10 @@ public class PlayerController : MonoBehaviour
 
     Animator animator;
 
+    bool unlock = false;
+    float unlockTimer = 0.0f;
+    float unlockTime = 0.4f;
+
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -76,6 +80,19 @@ public class PlayerController : MonoBehaviour
             BuildingUpdate();
 
             CurrentTileRaycast();
+
+            if (unlock == true)
+            {
+                
+                unlockTimer += Time.deltaTime;
+
+                if (unlockTimer >= unlockTime)
+                {
+                    unlock = false;
+                    animator.SetBool("Unlock", false);
+                }
+            }
+
         }
     }
 
@@ -339,6 +356,7 @@ public class PlayerController : MonoBehaviour
                 mining = true;
                 miningAreaObject.SetActive(true);
                 miningTimer = 0;
+                animator.SetBool("Mining", true);
             }
 
         }
@@ -351,6 +369,7 @@ public class PlayerController : MonoBehaviour
             {
                 mining = false;
                 miningAreaObject.SetActive(false);
+                animator.SetBool("Mining", false);
             }
         }
     }
@@ -415,8 +434,12 @@ public class PlayerController : MonoBehaviour
             if (other.gameObject.tag == "UnlockTrigger" && unlockTileImage.activeSelf)
             {
                 unlockTileImage.SetActive(false);
+                animator.SetBool("Unlock", false);
             }
 
+            unlockTimer = 0;
+            unlock = true;
+            animator.SetBool("Unlock", true);
         }
     }
 
