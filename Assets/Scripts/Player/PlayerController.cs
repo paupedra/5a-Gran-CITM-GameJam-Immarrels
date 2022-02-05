@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     //Building Costs
     int[] quarryCosts = new int[] {35,9,3};
     int[] mineCosts = new int[] { 25, 15, 6 };
-    int[] foundaryCosts = new int[] { 25, 1, 14 };
+    int[] foundaryCosts = new int[] { 25, 11, 14 };
     int[] refineryCosts = new int[] { 50, 0, 0 };
 
     public Text coalText;
