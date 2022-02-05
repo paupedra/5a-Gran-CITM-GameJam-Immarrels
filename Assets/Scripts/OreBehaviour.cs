@@ -35,11 +35,14 @@ public class OreBehaviour : MonoBehaviour
     float respawnTimer = 0;
     public float respawnTime = 5.0f;
 
+    ParticleSystem particles;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         collider = gameObject.GetComponent<CapsuleCollider>();
+        particles = GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -86,6 +89,7 @@ public class OreBehaviour : MonoBehaviour
             }
 
             hp--;
+            particles.Play();
 
             if (hp == 2)
             {

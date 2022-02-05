@@ -130,7 +130,7 @@ public class HexTileManager : MonoBehaviour
 
     public void SetTileOre(HexTileType forcedType = HexTileType.EMPTY, int forcedAmount = 0)
     {
-        if(forcedType != HexTileType.EMPTY)
+        if(forcedType == HexTileType.EMPTY)
         {
             int diffX = (int)Mathf.Abs(x - gridManager.centerTile.x);
             int diffY = (int)Mathf.Abs(y - gridManager.centerTile.y);
