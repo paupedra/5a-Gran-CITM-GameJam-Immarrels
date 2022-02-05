@@ -111,3 +111,4 @@ MonoBehaviour:
   collectorType: 2
   productionTime: 15
   orePerProduction: 1
+  floatingText: {fileID: 8717052149153365816, guid: b3f8a0206ec877d42aa5384b9019dcf6, type: 3}
