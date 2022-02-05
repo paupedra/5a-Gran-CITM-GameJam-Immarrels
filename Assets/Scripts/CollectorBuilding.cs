@@ -33,19 +33,21 @@ public class CollectorBuilding : MonoBehaviour
 
             switch(collectorType)
             {
-                case HexTileType.QUARRY:
+                case HexTileType.ROCK:
                     player.rock += 1;
                     break;
 
-                case HexTileType.FOUNDARY:
+                case HexTileType.METAL:
                     player.metal += 1;
                     break;
 
-                case HexTileType.MINE:
+                case HexTileType.COAL:
                     player.coal += 1;
                     break;
             }
         }
 
     }
+
+
 }
