@@ -77,11 +77,11 @@ public class HexTileManager : MonoBehaviour
     void Update()
     {
         //Update Corruption
-        if(corrupted)
-        {
-            UpdateCorruption();
+        //if(corrupted)
+        //{
+        //    UpdateCorruption();
             
-        }
+        //}
 
     }
 
@@ -113,7 +113,7 @@ public class HexTileManager : MonoBehaviour
         }
     }
 
-    void UpdateCorruption()
+    public void UpdateCorruption()
     {
         corruptionTimer += Time.deltaTime;
 

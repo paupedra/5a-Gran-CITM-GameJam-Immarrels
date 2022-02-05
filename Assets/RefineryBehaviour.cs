@@ -4,15 +4,49 @@ using UnityEngine;
 
 public class RefineryBehaviour : MonoBehaviour
 {
+
+    PlayerController player;
+    public GameObject costMenu;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            //Open Menu
+            costMenu.SetActive(true);
+            costMenu.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z),costMenu.transform.rotation);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            if(Input.GetKey("e"))
+            {
+                player.brick = player.clay/3;
+                player.clay = player.clay % 3;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            //Close Menu
+        }
     }
 }
