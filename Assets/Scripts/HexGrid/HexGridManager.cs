@@ -50,6 +50,8 @@ public class HexGridManager : MonoBehaviour
 
         tiles = new HexTile[gridWidth * gridHeight];
 
+        centerTile = new Vector2(gridWidth / 2, gridHeight / 2);
+
         GenerateGrid();
 
         SetStartingTiles();

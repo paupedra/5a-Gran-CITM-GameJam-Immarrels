@@ -15,6 +15,7 @@ public enum HexTileType
     MINE, //Coal
     FOUNDARY, //Metal
     EMPTY,
+    NONE,
 }
 
 public class HexTileManager : MonoBehaviour
@@ -128,18 +129,21 @@ public class HexTileManager : MonoBehaviour
         }
     }
 
-    public void SetTileOre(HexTileType forcedType = HexTileType.EMPTY, int forcedAmount = 0)
+    public void SetTileOre(HexTileType forcedType = HexTileType.NONE, int forcedAmount = 0)
     {
-        if(forcedType == HexTileType.EMPTY)
+        if(forcedType == HexTileType.NONE)
         {
-            int diffX = (int)Mathf.Abs(x - gridManager.centerTile.x);
-            int diffY = (int)Mathf.Abs(y - gridManager.centerTile.y);
-
+            int diffX = (int)Mathf.Abs( gridManager.centerTile.x - x); //Center tile 100 ,100
+            int diffY = (int)Mathf.Abs( gridManager.centerTile.y - y); //current 101,100
+            int a = diffX + diffY;
+            
             int circle = 0;
 
-            if (diffX + diffY <= 5)
+
+            if (diffX + diffY > 2 && diffX + diffY <= 5)
             {
                 circle = 1;
+              
             }
 
             if (diffX + diffY > 5 && diffX + diffY <= 10)
@@ -147,18 +151,23 @@ public class HexTileManager : MonoBehaviour
                 circle = 2;
             }
 
-            if (diffX + diffY > 10 && diffX + diffY <= 15)
+            if (diffX + diffY > 10)
             {
                 circle = 3;
             }
+            
 
             int rng = Random.Range(0, 101);
+            //Debug.Log(string.Concat("Rng was:" ,rng.ToString()));
 
             int[] chances = new int[] { 15, 55, 15, 10, 5 };
             int sum = 0;
 
             switch (circle)
             {
+                case 0:
+                    chances = new int[] { 0, 100, 0,0, 0 };
+                    break;
                 case 1:
                     chances = new int[] { 15, 55, 15, 10, 5 };
 
@@ -173,6 +182,8 @@ public class HexTileManager : MonoBehaviour
                     break;
             }
 
+            
+
 
             for (int i = 0; i < chances.Length; i++)
             {
@@ -184,9 +195,11 @@ public class HexTileManager : MonoBehaviour
                     {
                         case 0:
                             forcedType = HexTileType.EMPTY;
+                            Debug.Log("Empty");
                             break;
                         case 1:
                             forcedType = HexTileType.ROCK;
+                            Debug.Log("Rock");
                             break;
                         case 2:
                             forcedType = HexTileType.COAL;
@@ -210,6 +223,11 @@ public class HexTileManager : MonoBehaviour
             Destroy(containedObjects[i]);
         }
 
+        if(forcedType == HexTileType.EMPTY)
+        { 
+            return; 
+        }
+
         int oreNum = 0;
         
         if (forcedAmount != 0)
@@ -218,73 +236,70 @@ public class HexTileManager : MonoBehaviour
         }
         else
         {
-            oreNum = Random.Range(0, 5);
+            oreNum = Random.Range(1, 4);
+        }
+
+        int ore;
+
+        if (forcedType != HexTileType.NONE)
+        {
+            ore = (int)forcedType;
+        }
+        else
+        {
+            ore = Random.Range(0, 4);
+        }
+
+        GameObject orePrefab = gridManager.rockOre;
+
+        switch (ore)
+        {
+            case 0: //Rock
+                tileType = HexTileType.ROCK;
+                orePrefab = gridManager.rockOre;
+
+                break;
+
+            case 1: //Coal
+                tileType = HexTileType.COAL;
+                orePrefab = gridManager.coalOre;
+
+                break;
+
+            case 2: //Metal
+                tileType = HexTileType.METAL;
+                orePrefab = gridManager.metalOre;
+
+                break;
+
+            case 3: //Clay
+                tileType = HexTileType.CLAY;
+                orePrefab = gridManager.clayOre;
+
+                break;
+        }
+
+        switch (oreNum)
+        {
+            case 1:
+
+                containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
+
+                break;
+
+            case 2:
+                containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x + 0.5F, oreHeight, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
+                containedObjects[1] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
+                break;
+
+            case 3:
+                containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x+0.5f, oreHeight, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
+                containedObjects[1] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z+ 0.5f), Quaternion.identity, gameObject.transform);
+                containedObjects[2] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z - 0.5f), Quaternion.identity, gameObject.transform);
+                break;
         }
 
         
-        if (oreNum > 0)
-        {
-            int ore;
-
-            if (forcedType != HexTileType.EMPTY)
-            {
-                ore = (int)forcedType;
-            }
-            else
-            {
-                ore = Random.Range(0, 4);
-            }
-
-            GameObject orePrefab = gridManager.rockOre;
-
-            switch (ore)
-            {
-                case 0: //Rock
-                    tileType = HexTileType.ROCK;
-                    orePrefab = gridManager.rockOre;
-
-                    break;
-
-                case 1: //Coal
-                    tileType = HexTileType.COAL;
-                    orePrefab = gridManager.coalOre;
-
-                    break;
-
-                case 2: //Metal
-                    tileType = HexTileType.METAL;
-                    orePrefab = gridManager.metalOre;
-
-                    break;
-
-                case 3: //Clay
-                    tileType = HexTileType.CLAY;
-                    orePrefab = gridManager.clayOre;
-
-                    break;
-            }
-
-            switch (oreNum)
-            {
-                case 1:
-
-                    containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
-
-                    break;
-
-                case 2:
-                    containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x + 0.5F, oreHeight, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
-                    containedObjects[1] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
-                    break;
-
-                case 3:
-                    containedObjects[0] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x+0.5f, oreHeight, gameObject.transform.position.z), Quaternion.identity, gameObject.transform);
-                    containedObjects[1] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z+ 0.5f), Quaternion.identity, gameObject.transform);
-                    containedObjects[2] = Instantiate(orePrefab, new Vector3(gameObject.transform.position.x, oreHeight, gameObject.transform.position.z - 0.5f), Quaternion.identity, gameObject.transform);
-                    break;
-            }
-
-        }
     }
 
     public void FindNeighbours()

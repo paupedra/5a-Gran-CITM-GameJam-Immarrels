@@ -294,7 +294,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8f0c63795afd22347b5e49afe2630eb1, type: 2}
+  - {fileID: 2100000, guid: 67088139fccbb474f9d21c1637e19787, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -737,6 +737,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c96066f4e9794d74a8f5836a8ac08023, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e914bf01461f5d248a0184818554befe, type: 2}
     - target: {fileID: 919132149155446097, guid: c96066f4e9794d74a8f5836a8ac08023, type: 3}
       propertyPath: m_Name
       value: TheReAlTile

@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     public int rockCostUnlock=0;
 
     public Material greenTransparentMat;
+    public Material redTransparentMat;
     GameObject previewBuilding;
 
     public GameObject miningAreaObject;
@@ -327,36 +328,75 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Mouse0) && tileHit > 0 && tileHit < gridManager.gridWidth * gridManager.gridHeight && gridManager.tiles[tileHit].hexTileManager.active)
             {
-
-                gridManager.tiles[tileHit].hexTileManager.Build(buildingType, Quaternion.identity);
+                if(ComputeCostBuilding(buildingType,true))
+                {
+                    gridManager.tiles[tileHit].hexTileManager.Build(buildingType, Quaternion.identity);
+                }
             }
         }
     }
 
-    bool ComputeCostBuilding(HexTileType type) //Returns true if player can afford building
+    bool ComputeCostBuilding(HexTileType type, bool spend) //Returns true if player can afford building
     {
         bool ret = false;
 
         switch(type)
         {
             case HexTileType.PAVEMENT:
-
+                
                 break;
 
             case HexTileType.FOUNDARY:
+                if(foundaryCosts[0] <= rock && foundaryCosts[1] <= coal && foundaryCosts[2] <= metal)
+                {
+                    ret = true;
 
+                    if(spend)
+                    {
+                        rock -= foundaryCosts[0];
+                        coal -= foundaryCosts[1];
+                        metal -= foundaryCosts[2];
+                    }
+                }
                 break;
 
             case HexTileType.QUARRY:
-
+                if (quarryCosts[0] <= rock && quarryCosts[1] <= coal && quarryCosts[2] <= metal)
+                {
+                    ret = true;
+                    if (spend)
+                    {
+                        rock -= quarryCosts[0];
+                        coal -= quarryCosts[1];
+                        metal -= quarryCosts[2];
+                    }
+                }
                 break;
 
             case HexTileType.MINE:
-
+                if (mineCosts[0] <= rock && mineCosts[1] <= coal && mineCosts[2] <= metal)
+                {
+                    ret = true;
+                    if (spend)
+                    {
+                        rock -= mineCosts[0];
+                        coal -= mineCosts[1];
+                        metal -= mineCosts[2];
+                    }
+                }
                 break;
 
             case HexTileType.REFINERY:
-
+                if (refineryCosts[0] <= rock && refineryCosts[1] <= coal && refineryCosts[2] <= metal)
+                {
+                    ret = true;
+                    if (spend)
+                    {
+                        rock -= refineryCosts[0];
+                        coal -= refineryCosts[1];
+                        metal -= refineryCosts[2];
+                    }
+                }
                 break;
         }
 
@@ -369,11 +409,26 @@ public class PlayerController : MonoBehaviour
 
         if(previewBuilding.GetComponent<MeshRenderer>() != null)
         {
-            previewBuilding.GetComponent<MeshRenderer>().material = greenTransparentMat;
+            if(ComputeCostBuilding(buildingType,false))
+            {
+                previewBuilding.GetComponent<MeshRenderer>().material = greenTransparentMat;
+            }
+            else
+            {
+                previewBuilding.GetComponent<MeshRenderer>().material = redTransparentMat;
+            }
+            
         }
         else
         {
-            previewBuilding.GetComponentInChildren<MeshRenderer>().material = greenTransparentMat;
+            if (ComputeCostBuilding(buildingType, false))
+            {
+                previewBuilding.GetComponentInChildren<MeshRenderer>().material = greenTransparentMat;
+            }
+            else
+            {
+                previewBuilding.GetComponentInChildren<MeshRenderer>().material = redTransparentMat;
+            }
         }
 
     }
