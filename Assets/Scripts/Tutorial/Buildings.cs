@@ -20,4 +20,12 @@ public class Buildings : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         pop_up.SetActive(false);
     }
+
+    public void OnOffPanel(GameObject name)
+    {
+        if (name.activeSelf == true)
+            name.SetActive(false);
+        else
+            name.SetActive(true);
+    }
 }
