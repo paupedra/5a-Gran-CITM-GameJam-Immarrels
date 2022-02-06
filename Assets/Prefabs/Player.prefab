@@ -657,8 +657,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a03705c4d237d5540b55ab378fe97a27, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.504
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1246,6 +1246,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 4708929004372995008}
   camera: {fileID: 0}
+  footStepSound: {fileID: 4285915345864736846}
+  buildSound: {fileID: 9133325775836268155}
+  unlockSound: {fileID: 3214889910530161153}
+  shootSound: {fileID: 2394892918223877453}
   pickIcon: {fileID: 0}
   buildIcon: {fileID: 0}
   playerSpeed: 2
@@ -1271,6 +1275,7 @@ MonoBehaviour:
   redTransparentMat: {fileID: 2100000, guid: ae700eb64e14b7c46aa5d6457433029a, type: 2}
   miningAreaObject: {fileID: 5141790392645123712}
   projectile: {fileID: 8070574638072692645, guid: e69b4d82c5a40b44c834475867aa3cf9, type: 3}
+  corruptTutorialMenu: {fileID: 0}
   buildMenu: {fileID: 0}
   refineryCostMenu: {fileID: 0}
   townHallMenu: {fileID: 0}
@@ -1745,8 +1750,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6568d04ddba49464596c92e24f2f2645, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.181
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1903,8 +1908,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c002d80ccfe33c547aaf0dc772ec950d, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.075
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2656,8 +2661,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 58f0039be1ca83c469149cfb85609fb3, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.159
   m_Pitch: 1
   Loop: 0
   Mute: 0
