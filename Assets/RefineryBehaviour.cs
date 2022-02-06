@@ -30,7 +30,7 @@ public class RefineryBehaviour : MonoBehaviour
             player.refineryCostMenu.SetActive(true);
             //player.refineryCostMenu.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), player.refineryCostMenu.transform.rotation);
             player.clayCostText.text = player.clay.ToString();
-            player.bricksProducedText.text = (player.clay / 3).ToString();
+            player.bricksProducedText.text = (player.clay / 2).ToString();
         }
     }
 
@@ -40,8 +40,8 @@ public class RefineryBehaviour : MonoBehaviour
         {
             if(Input.GetKey("e"))
             {
-                player.brick += player.clay/3;
-                player.clay = player.clay % 3;
+                player.brick += player.clay/2;
+                player.clay = player.clay % 2;
             }
         }
     }

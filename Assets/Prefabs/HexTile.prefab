@@ -293,7 +293,7 @@ MonoBehaviour:
   y: 0
   active: 0
   corrupted: 0
-  corruptionTime: 5
+  corruptionTime: 35
   oreHeight: 0.5
   uncorruptedMaterial: {fileID: 2100000, guid: e914bf01461f5d248a0184818554befe, type: 2}
   corruptedMaterial: {fileID: 2100000, guid: 1a2ed71f8d8cc3b49b0880368753035a, type: 2}
