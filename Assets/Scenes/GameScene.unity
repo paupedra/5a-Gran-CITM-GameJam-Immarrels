@@ -3598,7 +3598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &565108429
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11269,7 +11269,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
       propertyPath: rock
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
       propertyPath: camera
