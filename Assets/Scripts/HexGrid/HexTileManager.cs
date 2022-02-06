@@ -40,6 +40,8 @@ public class HexTileManager : MonoBehaviour
 
     public HexGridManager gridManager;
 
+    GameManager gameManager;
+
     public BoxCollider unlockUpRight;
     public BoxCollider unlockRight;
     public BoxCollider unlockUpLeft;
@@ -70,7 +72,7 @@ public class HexTileManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -122,6 +124,11 @@ public class HexTileManager : MonoBehaviour
                 {
                     break;
                 }
+            }
+
+            if(tileType == HexTileType.TOWNHALL)
+            {
+                gameManager.lost = true;
             }
         }
         

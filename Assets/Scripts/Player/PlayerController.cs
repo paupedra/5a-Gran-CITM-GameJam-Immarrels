@@ -13,6 +13,14 @@ public class PlayerController : MonoBehaviour
     public CharacterController controller;
     public Camera camera;
 
+    public AudioSource footStepSound;
+    public AudioSource buildSound;
+    public AudioSource unlockSound;
+    public AudioSource shootSound;
+
+    float footStepTimer = 0;
+    float footStepTime = 0.4f;
+
     public GameObject pickIcon;
     public GameObject buildIcon;
 
@@ -78,7 +86,7 @@ public class PlayerController : MonoBehaviour
     public Text metalCompleteCostText;
     public Text rockCompleteCostText;
 
-    HexTileType buildingType = HexTileType.TOWNHALL;
+    HexTileType buildingType = HexTileType.QUARRY;
 
     public GameObject unlockTileImage;
     public Vector3 imageOffset = new Vector3(0f, 0f, 5f);
@@ -589,6 +597,8 @@ public class PlayerController : MonoBehaviour
             Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.rotation);
             Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y +30, transform.rotation.eulerAngles.z)));
             Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - 30, transform.rotation.eulerAngles.z)));
+
+            shootSound.Play();
         }
         
     }
@@ -609,6 +619,13 @@ public class PlayerController : MonoBehaviour
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDir.normalized * playerSpeed * Time.deltaTime);
+
+            footStepTimer += Time.deltaTime;
+            if(footStepTimer >= footStepTime)
+            {
+                footStepSound.Play();
+                footStepTimer = 0;
+            }
             
         }
         
@@ -668,6 +685,7 @@ public class PlayerController : MonoBehaviour
                 {
                     unlockTileImage.SetActive(false);
                     animator.SetBool("Unlock", false);
+                    unlockSound.Play();
                 }
 
                 unlockTimer = 0;

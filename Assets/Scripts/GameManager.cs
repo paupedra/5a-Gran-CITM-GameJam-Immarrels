@@ -10,11 +10,24 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject gui;
 
+    public bool won = false;
+    public bool lost = false;
+
+    public GameObject wonMenu;
+    public GameObject lostMenu;
+
+    public FollowTarget camScript;
+
+    float endGameTimer = 0;
+    float endGameTime = 5;
+
     // Start is called before the first frame update
     void Start()
     {
         pauseMenu.SetActive(false);
         gui.SetActive(true);
+        wonMenu.SetActive(false);
+        lostMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -35,6 +48,28 @@ public class GameManager : MonoBehaviour
                 paused = true;
                 pauseMenu.SetActive(true);
                 gui.SetActive(false);
+            }
+        }
+
+        if(won)
+        {
+            wonMenu.SetActive(true);
+            camScript.StartEndGame();
+        }
+
+        if(lost)
+        {
+            lostMenu.SetActive(true);
+            camScript.StartEndGame();
+        }
+
+        if(won || lost)
+        {
+            endGameTimer += Time.deltaTime;
+
+            if(endGameTimer >= endGameTime)
+            {
+                SceneManager.LoadScene("MainMenuManager");
             }
         }
     }
