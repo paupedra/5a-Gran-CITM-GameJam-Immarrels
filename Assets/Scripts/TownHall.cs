@@ -11,8 +11,8 @@ public class TownHall : MonoBehaviour
     GameManager gameManager;
 
     public int rockCompleteCost = 300;
-    public int metalCompleteCost = 120;
-    public int coalCompleteCost = 45;
+    public int metalCompleteCost = 45;
+    public int coalCompleteCost = 120;
 
     bool rockCompleted = false;
     bool metalCompleted = false;

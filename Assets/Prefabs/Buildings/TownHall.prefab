@@ -42,6 +42,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MasiaCartoon
       objectReference: {fileID: 0}
+    - target: {fileID: 8790817681485802036, guid: 6cb153ec00be338459af92f2b4323836, type: 3}
+      propertyPath: coalCompleteCost
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790817681485802036, guid: 6cb153ec00be338459af92f2b4323836, type: 3}
+      propertyPath: metalCompleteCost
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8975764856124834603, guid: 6cb153ec00be338459af92f2b4323836, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -98,19 +106,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8975764856124834603, guid: 6cb153ec00be338459af92f2b4323836, type: 3}
   m_PrefabInstance: {fileID: 1631191652347830859}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1926723991
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3616405958920533849}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.9424117, y: 1.5020301, z: 1.3298757}
-  m_Center: {x: 0.09302237, y: 0.0053168973, z: 0.63160574}
 --- !u!65 &1343768425
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -124,3 +119,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.7649462, y: 2.2135026, z: 1.8520637}
   m_Center: {x: 0.09055149, y: -0.042483684, z: 0.89267933}
+--- !u!65 &1926723991
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3616405958920533849}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9424117, y: 1.5020301, z: 1.3298757}
+  m_Center: {x: 0.09302237, y: 0.0053168973, z: 0.63160574}
