@@ -19,6 +19,7 @@ public class HexGridManager : MonoBehaviour
 
     public int corruptedTiles = 0;
     public Text corruptionText;
+    public Text nextCorruptionText;
 
     public GameObject hexTile; //prefab for the hexagonal tiles
 
@@ -36,6 +37,9 @@ public class HexGridManager : MonoBehaviour
     public GameObject foundary;
 
     public Vector2 centerTile;
+
+    public float corruptionTime = 5;
+    float corruptionTimer = 0;
 
     public int gridWidth = 10;
     public int gridHeight = 10;
@@ -71,15 +75,24 @@ public class HexGridManager : MonoBehaviour
         {
             Debug.Log("Loser game");
         }
-        
-        for(int i=0;i<tiles.Length;i++)
+
+        corruptionTimer += Time.deltaTime;
+
+        nextCorruptionText.text = string.Concat("Corruption expands in: ", ((100 * 0.3 + corruptedTiles) - corruptionTimer).ToString("f2")," s");
+
+        if (corruptionTimer >= 100 * 0.3 + corruptedTiles)
         {
-            if(tiles[i].hexTileManager.corrupted)
+            for (int i = 0; i < tiles.Length; i++)
             {
-                tiles[i].hexTileManager.UpdateCorruption();
+                if (tiles[i].hexTileManager.corrupted)
+                {
+                    tiles[i].hexTileManager.UpdateCorruption();
+                }
+
             }
-            
+
         }
+            
     }
 
     void GenerateGrid()
@@ -158,7 +171,8 @@ public class HexGridManager : MonoBehaviour
         player.transform.SetPositionAndRotation(new Vector3(tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].tileObject.transform.position.x, 0.5f, tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].tileObject.transform.position.z), Quaternion.identity);
         camera.transform.SetPositionAndRotation(new Vector3(camera.transform.position.x + player.transform.position.x, camera.transform.position.y + player.transform.position.y, camera.transform.position.z + player.transform.position.z), camera.transform.rotation);
         camera.cameraOffset = camera.transform.position - camera.target.transform.position;
-
+        player.transform.SetPositionAndRotation(new Vector3(tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].tileObject.transform.position.x, 0.5f, tiles[(int)centerTile.x + (int)centerTile.y * gridWidth].tileObject.transform.position.z), Quaternion.identity);
+        
         minimapCamera.transform.SetPositionAndRotation(new Vector3(minimapCamera.transform.position.x + player.transform.position.x, minimapCamera.transform.position.y + player.transform.position.y, minimapCamera.transform.position.z + player.transform.position.z), minimapCamera.transform.rotation);
         minimapCamera.cameraOffset = minimapCamera.transform.position - minimapCamera.target.transform.position;
 

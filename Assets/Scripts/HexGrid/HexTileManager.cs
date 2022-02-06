@@ -176,15 +176,6 @@ public class HexTileManager : MonoBehaviour
 
         //100 * 0.35 + infected tiles
 
-        corruptionTimer += Time.deltaTime;
-
-        if (corruptionTimer >= 100 * 0.3 + gridManager.corruptedTiles)
-        {
-            int a = Random.Range(0, 2);
-            if(a == 0)
-            {
-                return;
-            }
 
             bool _corruped = false;
             int tilesChecked = 0;
@@ -266,7 +257,7 @@ public class HexTileManager : MonoBehaviour
                 i++;
             }
 
-        }
+        
     }
 
     public void Build(HexTileType type, Quaternion rotation)
