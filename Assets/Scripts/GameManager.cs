@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class GameManager : MonoBehaviour
 {
     public bool paused = false;
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     float endGameTimer = 0;
     float endGameTime = 5;
+
+
 
     // Start is called before the first frame update
     void Start()

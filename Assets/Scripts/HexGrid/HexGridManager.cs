@@ -11,6 +11,9 @@ public class HexTile
 
 public class HexGridManager : MonoBehaviour
 {
+    public bool unlockedFirst = false;
+    public bool finishedTutorial = false;
+
     public FollowTarget camera;
 
     public FollowTarget minimapCamera;
@@ -76,31 +79,35 @@ public class HexGridManager : MonoBehaviour
             Debug.Log("Loser game");
         }
 
-        corruptionTimer += Time.deltaTime;
-
-        nextCorruptionText.text = string.Concat("Corruption expands in: ", ((100 * 0.3 + corruptedTiles) - corruptionTimer).ToString("f2")," s");
-
-        if (corruptionTimer >= 100 * 0.3 + corruptedTiles)
+        if(finishedTutorial)
         {
-            for (int i = 0; i < tiles.Length; i++)
-            {
-                if (tiles[i].hexTileManager.corrupted)
-                {
-                    tiles[i].hexTileManager.UpdateCorruption();
-                }
+            corruptionTimer += Time.deltaTime;
 
-            }
-            for (int i = 0; i < tiles.Length; i++)
-            {
-                if (tiles[i].hexTileManager.toCorrupt)
-                {
-                    tiles[i].hexTileManager.ToCorruptTrigger();
-                }
 
+
+            if (corruptionTimer >= 100 * 0.3 + corruptedTiles)
+            {
+                for (int i = 0; i < tiles.Length; i++)
+                {
+                    if (tiles[i].hexTileManager.corrupted)
+                    {
+                        tiles[i].hexTileManager.UpdateCorruption();
+                    }
+
+                }
+                for (int i = 0; i < tiles.Length; i++)
+                {
+                    if (tiles[i].hexTileManager.toCorrupt)
+                    {
+                        tiles[i].hexTileManager.ToCorruptTrigger();
+                    }
+
+                }
+                corruptionTimer = 0;
             }
-            corruptionTimer = 0;
+            nextCorruptionText.text = string.Concat("Corruption expands in: ", ((100 * 0.3 + corruptedTiles) - corruptionTimer).ToString("f2"), " s");
         }
-            
+        
     }
 
     void GenerateGrid()

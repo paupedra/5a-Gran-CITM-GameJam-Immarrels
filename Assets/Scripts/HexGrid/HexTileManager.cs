@@ -387,11 +387,10 @@ public class HexTileManager : MonoBehaviour
                     {
                         case 0:
                             forcedType = HexTileType.EMPTY;
-                            Debug.Log("Empty");
+
                             break;
                         case 1:
                             forcedType = HexTileType.ROCK;
-                            Debug.Log("Rock");
                             break;
                         case 2:
                             forcedType = HexTileType.COAL;

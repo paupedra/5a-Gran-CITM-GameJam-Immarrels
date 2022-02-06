@@ -72,6 +72,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject projectile;
 
+    public GameObject corruptTutorialMenu;
+
     public GameObject buildMenu;
     public GameObject refineryCostMenu;
     public GameObject townHallMenu;
@@ -655,31 +657,67 @@ public class PlayerController : MonoBehaviour
                 if (other.gameObject.name == "UnlockTileUpRight")
                 {
                     other.gameObject.GetComponentInParent<HexTileManager>().UnlockUpRightTile();
+                    if(!gridManager.unlockedFirst)
+                    {
+                        gridManager.unlockedFirst = true;
+                        other.gameObject.GetComponentInParent<HexTileManager>().tileUpRight.CorruptTile();
+                        corruptTutorialMenu.SetActive(true);
+                    }
                 }
 
                 if (other.gameObject.name == "UnlockTileUpLeft")
                 {
                     other.gameObject.GetComponentInParent<HexTileManager>().UnlockUpLeftTile();
+                    if (!gridManager.unlockedFirst)
+                    {
+                        gridManager.unlockedFirst = true;
+                        other.gameObject.GetComponentInParent<HexTileManager>().tileUpLeft.CorruptTile();
+                        corruptTutorialMenu.SetActive(true);
+                    }
                 }
 
                 if (other.gameObject.name == "UnlockTileRight")
                 {
                     other.gameObject.GetComponentInParent<HexTileManager>().UnlockRightTile();
+                    if (!gridManager.unlockedFirst)
+                    {
+                        gridManager.unlockedFirst = true;
+                        other.gameObject.GetComponentInParent<HexTileManager>().tileRight.CorruptTile();
+                        corruptTutorialMenu.SetActive(true);
+                    }
                 }
 
                 if (other.gameObject.name == "UnlockTileLeft")
                 {
                     other.gameObject.GetComponentInParent<HexTileManager>().UnlockLeftTile();
+                    if (!gridManager.unlockedFirst)
+                    {
+                        gridManager.unlockedFirst = true;
+                        other.gameObject.GetComponentInParent<HexTileManager>().tileLeft.CorruptTile();
+                        corruptTutorialMenu.SetActive(true);
+                    }
                 }
 
                 if (other.gameObject.name == "UnlockTileDownRight")
                 {
                     other.gameObject.GetComponentInParent<HexTileManager>().UnlockDownRightTile();
+                    if (!gridManager.unlockedFirst)
+                    {
+                        gridManager.unlockedFirst = true;
+                        other.gameObject.GetComponentInParent<HexTileManager>().tileDownRight.CorruptTile();
+                        corruptTutorialMenu.SetActive(true);
+                    }
                 }
 
                 if (other.gameObject.name == "UnlockTileDownLeft")
                 {
                     other.gameObject.GetComponentInParent<HexTileManager>().UnlockDownLeftTile();
+                    if (!gridManager.unlockedFirst)
+                    {
+                        gridManager.unlockedFirst = true;
+                        other.gameObject.GetComponentInParent<HexTileManager>().tileDownLeft.CorruptTile();
+                        corruptTutorialMenu.SetActive(true);
+                    }
                 }
 
                 if (other.gameObject.tag == "UnlockTrigger" && unlockTileImage.activeSelf)
@@ -687,6 +725,7 @@ public class PlayerController : MonoBehaviour
                     unlockTileImage.SetActive(false);
                     animator.SetBool("Unlock", false);
                     unlockSound.Play();
+
                 }
 
                 unlockTimer = 0;

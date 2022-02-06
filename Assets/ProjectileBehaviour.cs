@@ -38,6 +38,10 @@ public class ProjectileBehaviour : MonoBehaviour
         if(other.tag == "HaxTile")
         {
             gridManager.tiles[int.Parse(other.gameObject.name)].hexTileManager.UncorruptTile();
+            if(!gridManager.finishedTutorial)
+            {
+                gridManager.finishedTutorial = true;
+            }
         }
     }
 }
