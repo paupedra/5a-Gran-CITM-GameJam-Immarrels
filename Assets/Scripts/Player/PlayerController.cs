@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     public int shootCost = 10;
 
     //Building Costs
-    int[] quarryCosts = new int[] {35,9,3};
+    int[] quarryCosts = new int[] {35,9,0};
     int[] mineCosts = new int[] { 25, 15, 6 };
     int[] foundaryCosts = new int[] { 25, 11, 14 };
     int[] refineryCosts = new int[] { 50, 0, 0 };
