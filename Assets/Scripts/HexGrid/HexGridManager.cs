@@ -72,6 +72,14 @@ public class HexGridManager : MonoBehaviour
             Debug.Log("Loser game");
         }
         
+        for(int i=0;i<tiles.Length;i++)
+        {
+            if(tiles[i].hexTileManager.corrupted)
+            {
+                tiles[i].hexTileManager.UpdateCorruption();
+            }
+            
+        }
     }
 
     void GenerateGrid()
