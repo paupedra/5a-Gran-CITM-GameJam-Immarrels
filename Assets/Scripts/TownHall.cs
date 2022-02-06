@@ -8,6 +8,8 @@ public class TownHall : MonoBehaviour
 {
     PlayerController player;
 
+    GameManager gameManager;
+
     public int rockCompleteCost = 300;
     public int metalCompleteCost = 120;
     public int coalCompleteCost = 45;
@@ -21,7 +23,7 @@ public class TownHall : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
-
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -37,6 +39,7 @@ public class TownHall : MonoBehaviour
         if(rockCompleted && coalCompleted && metalCompleted)
         {
             //DO stuff to end game in victory
+            gameManager.won = true;
         }
     }
 
