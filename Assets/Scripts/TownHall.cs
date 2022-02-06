@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TownHall : MonoBehaviour
 {
@@ -32,6 +33,11 @@ public class TownHall : MonoBehaviour
             player.metalCompleteCostText.text = metalCompleteCost.ToString();
         if (rockCompleted == false)
             player.rockCompleteCostText.text = rockCompleteCost.ToString();
+
+        if(rockCompleted && coalCompleted && metalCompleted)
+        {
+            //DO stuff to end game in victory
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,7 +59,7 @@ public class TownHall : MonoBehaviour
                 //Open TownHall Menu
                 if(rockCompleted == false)
                 {
-                    if (player.rock >= 0 && rockCompleteCost >= 0)
+                    if (player.rock >= 0 && rockCompleteCost > 0)
                     {
                         int x = player.rock;
 
@@ -69,10 +75,14 @@ public class TownHall : MonoBehaviour
                         }
  
                     }
+                    else if (rockCompleteCost == 0)
+                    {
+                        rockCompleted = true;
+                    }
                 }
-                if (coalCompleted == false && coalCompleteCost >= 0)
+                if (coalCompleted == false)
                 {
-                    if (player.coal >= 0 && coalCompleteCost >= 0)
+                    if (player.coal >= 0 && coalCompleteCost > 0)
                     {
                         int x = player.coal;
 
@@ -88,10 +98,14 @@ public class TownHall : MonoBehaviour
                         }
 
                     }
+                    else if( coalCompleteCost == 0)
+                    {
+                        coalCompleted = true;
+                    }
                 }
-                if (metalCompleted == false && metalCompleteCost >= 0)
+                if (metalCompleted == false)
                 {
-                    if (player.metal >= 0 && metalCompleteCost >= 0)
+                    if (player.metal >= 0 && metalCompleteCost > 0)
                     {
                         int x = player.metal;
 
@@ -106,6 +120,10 @@ public class TownHall : MonoBehaviour
                             player.metal -= x;
                         }
 
+                    }
+                    else if (metalCompleteCost == 0)
+                    {
+                        metalCompleted = true;
                     }
                 }
             }
