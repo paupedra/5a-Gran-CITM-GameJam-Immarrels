@@ -90,7 +90,7 @@ public class HexGridManager : MonoBehaviour
                 }
 
             }
-
+            corruptionTimer = 0;
         }
             
     }

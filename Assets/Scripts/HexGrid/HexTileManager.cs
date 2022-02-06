@@ -30,8 +30,7 @@ public class HexTileManager : MonoBehaviour
     public bool active = false;
 
     public bool corrupted = false;
-    public float corruptionTime = 5;
-    float corruptionTimer = 0;
+   
 
     public float oreHeight= 0.5f;
 
@@ -183,7 +182,7 @@ public class HexTileManager : MonoBehaviour
             while (!_corruped && tilesChecked < 6)
             {
                 int rng = i; //Random.Range(0, 7);
-                corruptionTimer = 0;
+                
                 switch (rng)
                 {
                     case 1:
