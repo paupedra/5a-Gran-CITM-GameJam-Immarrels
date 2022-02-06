@@ -53,6 +53,8 @@ public class HexGridManager : MonoBehaviour
 
     public bool showAllTiles = false;
 
+    public AudioSource corruption;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,6 +89,8 @@ public class HexGridManager : MonoBehaviour
 
             if (corruptionTimer >= 100 * 0.3 + corruptedTiles)
             {
+                corruption.Play();
+
                 for (int i = 0; i < tiles.Length; i++)
                 {
                     if (tiles[i].hexTileManager.corrupted)
