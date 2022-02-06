@@ -87,16 +87,74 @@ public class HexTileManager : MonoBehaviour
 
     public void CorruptTile()
     {
-        gameObject.GetComponentInChildren<MeshRenderer>().material = corruptedMaterial;
-        corrupted = true;
-        gridManager.corruptedTiles++;
+        if(!corrupted)
+        {
+            gameObject.GetComponentInChildren<MeshRenderer>().material = corruptedMaterial;
+            corrupted = true;
+            gridManager.corruptedTiles++;
+
+            for (int i = 0; i < containedObjects.Length; i++)
+            {
+                if (containedObjects[i] != null)
+                {
+                    if (containedObjects[i].GetComponent<OreBehaviour>() != null)
+                    {
+                        containedObjects[i].GetComponent<OreBehaviour>().corrupted = true;
+                    }
+
+                    if (containedObjects[i].GetComponent<CollectorBuilding>() != null)
+                    {
+                        containedObjects[i].GetComponent<CollectorBuilding>().corrupted = true;
+                    }
+
+                    if (containedObjects[i].GetComponent<RefineryBehaviour>() != null)
+                    {
+                        containedObjects[i].GetComponent<RefineryBehaviour>().corrupted = true;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+        
     }
 
     public void UncorruptTile()
     {
-        gameObject.GetComponentInChildren<MeshRenderer>().material = uncorruptedMaterial;
-        corrupted = false;
-        gridManager.corruptedTiles--;
+        if(corrupted)
+        {
+            gameObject.GetComponentInChildren<MeshRenderer>().material = uncorruptedMaterial;
+            corrupted = false;
+            gridManager.corruptedTiles--;
+
+            for (int i = 0; i < containedObjects.Length; i++)
+            {
+                if (containedObjects[i] != null)
+                {
+                    if (containedObjects[i].GetComponent<OreBehaviour>() != null)
+                    {
+                        containedObjects[i].GetComponent<OreBehaviour>().corrupted = false;
+                    }
+
+                    if (containedObjects[i].GetComponent<CollectorBuilding>() != null)
+                    {
+                        containedObjects[i].GetComponent<CollectorBuilding>().corrupted = false;
+                    }
+
+                    if (containedObjects[i].GetComponent<RefineryBehaviour>() != null)
+                    {
+                        containedObjects[i].GetComponent<RefineryBehaviour>().corrupted = false;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+       
     }
 
     public void SetTileActive(bool _active)

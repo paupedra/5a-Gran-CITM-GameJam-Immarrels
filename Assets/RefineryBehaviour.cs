@@ -7,6 +7,8 @@ public class RefineryBehaviour : MonoBehaviour
 
     PlayerController player;
 
+    public bool corrupted = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,7 @@ public class RefineryBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" && !corrupted)
         {
             //Open Menu
             player.refineryCostMenu.SetActive(true);
@@ -36,7 +38,7 @@ public class RefineryBehaviour : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && !corrupted)
         {
             if(Input.GetKey("e"))
             {
