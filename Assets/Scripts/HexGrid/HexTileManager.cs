@@ -30,8 +30,8 @@ public class HexTileManager : MonoBehaviour
     public bool active = false;
 
     public bool corrupted = false;
-    public float corruptionTime = 5;
-    float corruptionTimer = 0;
+
+    public bool toCorrupt=false;
 
     public float oreHeight= 0.5f;
 
@@ -82,6 +82,12 @@ public class HexTileManager : MonoBehaviour
         //    UpdateCorruption();
             
         //}
+
+        if(toCorrupt)
+        {
+            CorruptTile();
+            toCorrupt = false;
+        }
 
     }
 
@@ -183,7 +189,7 @@ public class HexTileManager : MonoBehaviour
             while (!_corruped && tilesChecked < 6)
             {
                 int rng = i; //Random.Range(0, 7);
-                corruptionTimer = 0;
+                
                 switch (rng)
                 {
                     case 1:
@@ -191,7 +197,7 @@ public class HexTileManager : MonoBehaviour
                         {
                             if (!tileUpRight.corrupted)
                             {
-                                tileUpRight.CorruptTile();
+                                tileUpRight.toCorrupt = true;
                                 _corruped = true;
                             }
                         }
@@ -203,8 +209,8 @@ public class HexTileManager : MonoBehaviour
                         {
                             if (!tileRight.corrupted)
                             {
-                                tileRight.CorruptTile();
-                                _corruped = true;
+                                tileRight.toCorrupt = true;
+                            _corruped = true;
                             }
                         }
                         tilesChecked++;
@@ -214,8 +220,8 @@ public class HexTileManager : MonoBehaviour
                         {
                             if (!tileUpLeft.corrupted)
                             {
-                                tileUpLeft.CorruptTile();
-                                _corruped = true;
+                                tileUpLeft.toCorrupt = true;
+                            _corruped = true;
                             }
                         }
                         tilesChecked++;
@@ -225,8 +231,8 @@ public class HexTileManager : MonoBehaviour
                         {
                             if (!tileLeft.corrupted)
                             {
-                                tileLeft.CorruptTile();
-                                _corruped = true;
+                                tileLeft.toCorrupt = true;
+                            _corruped = true;
                             }
                         }
                         tilesChecked++;
@@ -236,8 +242,8 @@ public class HexTileManager : MonoBehaviour
                         {
                             if (!tileDownRight.corrupted)
                             {
-                                tileDownRight.CorruptTile();
-                                _corruped = true;
+                                tileDownRight.toCorrupt = true;
+                            _corruped = true;
                             }
                         }
                         tilesChecked++;
@@ -247,8 +253,8 @@ public class HexTileManager : MonoBehaviour
                         {
                             if (!tileDownLeft.corrupted)
                             {
-                                tileDownLeft.CorruptTile();
-                                _corruped = true;
+                                tileDownLeft.toCorrupt = true;
+                            _corruped = true;
                             }
                         }
                         tilesChecked++;
