@@ -18,8 +18,8 @@ public class Ui_Assistant : MonoBehaviour
         textWriter.AddWriter(messageText, "Welcome to Tamara.\nMove with WASD and recollect resources with SpaceBar.\nOnce you have collected all resources spend them to unlock the next tile.\nSTART YOUR EXPANSION AND ENJOY!", 0.1f);
     }
 
-    public void Close()
+    public void Close(GameObject obj)
     {
-        gameObject.SetActive(false);
+        obj.SetActive(false);
     }
 }
