@@ -173,9 +173,12 @@ public class HexTileManager : MonoBehaviour
 
     public void UpdateCorruption()
     {
+
+        //100 * 0.35 + infected tiles
+
         corruptionTimer += Time.deltaTime;
 
-        if (corruptionTimer >= corruptionTime)
+        if (corruptionTimer >= 100 * 0.3 + gridManager.corruptedTiles)
         {
             int a = Random.Range(0, 2);
             if(a == 0)
