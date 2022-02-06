@@ -7,7 +7,6 @@ TagManager:
   - HaxTile
   - Ore
   - UnlockTrigger
-  - PopUp
   layers:
   - Default
   - TransparentFX

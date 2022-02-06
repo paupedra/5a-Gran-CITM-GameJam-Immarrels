@@ -66,13 +66,17 @@ public class PlayerController : MonoBehaviour
 
     public GameObject buildMenu;
     public GameObject refineryCostMenu;
+    public GameObject townHallMenu;
     public Text clayCostText;
     public Text bricksProducedText;
-
 
     public Text coalCostText;
     public Text metalCostText;
     public Text rockCostText;
+
+    public Text coalCompleteCostText;
+    public Text metalCompleteCostText;
+    public Text rockCompleteCostText;
 
     HexTileType buildingType = HexTileType.TOWNHALL;
 
@@ -96,6 +100,7 @@ public class PlayerController : MonoBehaviour
         buildIcon.SetActive(false);
 
         refineryCostMenu.SetActive(false);
+        townHallMenu.SetActive(false);
 
         buildMenu.SetActive(false);
     }
