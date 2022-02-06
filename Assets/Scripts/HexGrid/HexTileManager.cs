@@ -85,11 +85,7 @@ public class HexTileManager : MonoBehaviour
             
         //}
 
-        if(toCorrupt)
-        {
-            CorruptTile();
-            toCorrupt = false;
-        }
+       
 
     }
 
@@ -181,6 +177,15 @@ public class HexTileManager : MonoBehaviour
         {
             active = false;
             gameObject.SetActive(false);
+        }
+    }
+
+    public void ToCorruptTrigger()
+    {
+        if (toCorrupt)
+        {
+            CorruptTile();
+            toCorrupt = false;
         }
     }
 

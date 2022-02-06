@@ -359,6 +359,7 @@ public class PlayerController : MonoBehaviour
                 if(ComputeCostBuilding(buildingType,true))
                 {
                     gridManager.tiles[tileHit].hexTileManager.Build(buildingType, Quaternion.identity);
+                    buildSound.Play();
                 }
             }
         }

@@ -90,6 +90,14 @@ public class HexGridManager : MonoBehaviour
                 }
 
             }
+            for (int i = 0; i < tiles.Length; i++)
+            {
+                if (tiles[i].hexTileManager.toCorrupt)
+                {
+                    tiles[i].hexTileManager.ToCorruptTrigger();
+                }
+
+            }
             corruptionTimer = 0;
         }
             

@@ -8,17 +8,22 @@ public class RefineryBehaviour : MonoBehaviour
     PlayerController player;
 
     public bool corrupted = false;
+    AudioSource audioSrc;
+
+    float useTimer = 0;
+    float useTime = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player").GetComponent<PlayerController>(); 
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
+        audioSrc = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        useTimer += Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,11 +42,19 @@ public class RefineryBehaviour : MonoBehaviour
     {
         if (other.tag == "Player" && !corrupted)
         {
-            if(Input.GetKey("e"))
+            if (Input.GetKey("e"))
             {
-                player.brick += player.clay/2;
-                player.clay = player.clay % 2;
+                if (useTimer >= useTime)
+                {
+               
+                    player.brick += player.clay / 2;
+                    player.clay = player.clay % 2;
+                    audioSrc.Play();
+                    useTimer = 0;
+                }
+                
             }
+            
         }
     }
 
