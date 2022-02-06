@@ -7,6 +7,8 @@ public class RefineryBehaviour : MonoBehaviour
 
     PlayerController player;
 
+    public bool corrupted = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,24 +23,24 @@ public class RefineryBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" && !corrupted)
         {
             //Open Menu
             player.refineryCostMenu.SetActive(true);
             //player.refineryCostMenu.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), player.refineryCostMenu.transform.rotation);
             player.clayCostText.text = player.clay.ToString();
-            player.bricksProducedText.text = (player.clay / 3).ToString();
+            player.bricksProducedText.text = (player.clay / 2).ToString();
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && !corrupted)
         {
             if(Input.GetKey("e"))
             {
-                player.brick += player.clay/3;
-                player.clay = player.clay % 3;
+                player.brick += player.clay/2;
+                player.clay = player.clay % 2;
             }
         }
     }

@@ -3350,7 +3350,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 3
+  m_Text: 0
 --- !u!222 &465671461
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11307,6 +11307,10 @@ PrefabInstance:
       propertyPath: metalText
       value: 
       objectReference: {fileID: 589719523}
+    - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
+      propertyPath: shootCost
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4708929004372995009, guid: 9e4c70defb6927d4aaf43b9d00e59df9, type: 3}
       propertyPath: clayCostText
       value: 

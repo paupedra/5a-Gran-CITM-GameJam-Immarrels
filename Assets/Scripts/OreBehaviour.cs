@@ -21,6 +21,8 @@ public class OreBehaviour : MonoBehaviour
     public int hp = 3; //Amount of times it can be hit
     public int orePerHit = 1;
 
+    public bool corrupted = false;
+
     public GameObject floatingText;
 
     bool exhausted;
@@ -55,10 +57,14 @@ public class OreBehaviour : MonoBehaviour
         {
             if(respawnTimer>=respawnTime)
             {
-                hp = maxHp;
-                respawnTimer = 0;
-                childMesh.mesh = fullHPModel;
-                exhausted = false;
+                if(!corrupted)
+                {
+                    hp = maxHp;
+                    respawnTimer = 0;
+                    childMesh.mesh = fullHPModel;
+                    exhausted = false;
+                }
+                
             }
 
             respawnTimer += Time.deltaTime;

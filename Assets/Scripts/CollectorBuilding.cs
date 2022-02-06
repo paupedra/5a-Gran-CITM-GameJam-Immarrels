@@ -12,6 +12,8 @@ public class CollectorBuilding : MonoBehaviour
 
     public int orePerProduction = 0;
 
+    public bool corrupted = false;
+
     PlayerController player;
 
     public GameObject floatingText;
@@ -30,24 +32,29 @@ public class CollectorBuilding : MonoBehaviour
 
         if(productionTimer >= productionTime)
         {
-            productionTimer = 0;
-
-            switch(collectorType)
+            if (!corrupted)
             {
-                case HexTileType.ROCK:
-                    player.rock += orePerProduction;
-                    break;
+                productionTimer = 0;
 
-                case HexTileType.METAL:
-                    player.metal += orePerProduction;
-                    break;
+                switch (collectorType)
+                {
+                    case HexTileType.ROCK:
+                        player.rock += orePerProduction;
+                        break;
 
-                case HexTileType.COAL:
-                    player.coal += orePerProduction;
-                    break;
+                    case HexTileType.METAL:
+                        player.metal += orePerProduction;
+                        break;
+
+                    case HexTileType.COAL:
+                        player.coal += orePerProduction;
+                        break;
+                }
+
+
+
+                ShowOreCollected(orePerProduction.ToString());
             }
-
-            ShowOreCollected(orePerProduction.ToString());
         }
 
     }
