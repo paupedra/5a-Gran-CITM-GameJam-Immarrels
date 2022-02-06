@@ -65,6 +65,10 @@ public class PlayerController : MonoBehaviour
     public GameObject projectile;
 
     public GameObject buildMenu;
+    public GameObject refineryCostMenu;
+    public Text clayCostText;
+    public Text bricksProducedText;
+
 
     public Text coalCostText;
     public Text metalCostText;
@@ -90,6 +94,8 @@ public class PlayerController : MonoBehaviour
 
         pickIcon.SetActive(true);
         buildIcon.SetActive(false);
+
+        refineryCostMenu.SetActive(false);
 
         buildMenu.SetActive(false);
     }
@@ -607,60 +613,64 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(Input.GetKey("e"))
+        if(other.gameObject.tag == "UnlockTrigger")
         {
-            if(coal >= coalCostUnlock && rock >= rockCostUnlock && metal >= metalCostUnlock)
+            if (Input.GetKey("e"))
             {
-                coal -= coalCostUnlock;
-                rock -= rockCostUnlock;
-                metal -= metalCostUnlock;
-            }
-            else
-            {
-                return;
-            }
+                if (coal >= coalCostUnlock && rock >= rockCostUnlock && metal >= metalCostUnlock)
+                {
+                    coal -= coalCostUnlock;
+                    rock -= rockCostUnlock;
+                    metal -= metalCostUnlock;
+                }
+                else
+                {
+                    return;
+                }
 
 
-            if(other.gameObject.name == "UnlockTileUpRight")
-            {
-                other.gameObject.GetComponentInParent<HexTileManager>().UnlockUpRightTile();
-            }
+                if (other.gameObject.name == "UnlockTileUpRight")
+                {
+                    other.gameObject.GetComponentInParent<HexTileManager>().UnlockUpRightTile();
+                }
 
-            if (other.gameObject.name == "UnlockTileUpLeft")
-            {
-                other.gameObject.GetComponentInParent<HexTileManager>().UnlockUpLeftTile();
-            }
+                if (other.gameObject.name == "UnlockTileUpLeft")
+                {
+                    other.gameObject.GetComponentInParent<HexTileManager>().UnlockUpLeftTile();
+                }
 
-            if (other.gameObject.name == "UnlockTileRight")
-            {
-                other.gameObject.GetComponentInParent<HexTileManager>().UnlockRightTile();
-            }
+                if (other.gameObject.name == "UnlockTileRight")
+                {
+                    other.gameObject.GetComponentInParent<HexTileManager>().UnlockRightTile();
+                }
 
-            if (other.gameObject.name == "UnlockTileLeft")
-            {
-                other.gameObject.GetComponentInParent<HexTileManager>().UnlockLeftTile();
-            }
+                if (other.gameObject.name == "UnlockTileLeft")
+                {
+                    other.gameObject.GetComponentInParent<HexTileManager>().UnlockLeftTile();
+                }
 
-            if (other.gameObject.name == "UnlockTileDownRight")
-            {
-                other.gameObject.GetComponentInParent<HexTileManager>().UnlockDownRightTile();
-            }
+                if (other.gameObject.name == "UnlockTileDownRight")
+                {
+                    other.gameObject.GetComponentInParent<HexTileManager>().UnlockDownRightTile();
+                }
 
-            if (other.gameObject.name == "UnlockTileDownLeft")
-            {
-                other.gameObject.GetComponentInParent<HexTileManager>().UnlockDownLeftTile();
-            }
+                if (other.gameObject.name == "UnlockTileDownLeft")
+                {
+                    other.gameObject.GetComponentInParent<HexTileManager>().UnlockDownLeftTile();
+                }
 
-            if (other.gameObject.tag == "UnlockTrigger" && unlockTileImage.activeSelf)
-            {
-                unlockTileImage.SetActive(false);
-                animator.SetBool("Unlock", false);
-            }
+                if (other.gameObject.tag == "UnlockTrigger" && unlockTileImage.activeSelf)
+                {
+                    unlockTileImage.SetActive(false);
+                    animator.SetBool("Unlock", false);
+                }
 
-            unlockTimer = 0;
-            unlock = true;
-            animator.SetBool("Unlock", true);
+                unlockTimer = 0;
+                unlock = true;
+                animator.SetBool("Unlock", true);
+            }
         }
+        
     }
 
     private void OnTriggerEnter(Collider other)

@@ -6,12 +6,14 @@ public class RefineryBehaviour : MonoBehaviour
 {
 
     PlayerController player;
-    public GameObject costMenu;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+        
+
+        
     }
 
     // Update is called once per frame
@@ -25,8 +27,10 @@ public class RefineryBehaviour : MonoBehaviour
         if(other.tag == "Player")
         {
             //Open Menu
-            costMenu.SetActive(true);
-            costMenu.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z),costMenu.transform.rotation);
+            player.refineryCostMenu.SetActive(true);
+            //player.refineryCostMenu.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), player.refineryCostMenu.transform.rotation);
+            player.clayCostText.text = player.clay.ToString();
+            player.bricksProducedText.text = (player.clay / 3).ToString();
         }
     }
 
@@ -36,7 +40,7 @@ public class RefineryBehaviour : MonoBehaviour
         {
             if(Input.GetKey("e"))
             {
-                player.brick = player.clay/3;
+                player.brick += player.clay/3;
                 player.clay = player.clay % 3;
             }
         }
@@ -47,6 +51,7 @@ public class RefineryBehaviour : MonoBehaviour
         if (other.tag == "Player")
         {
             //Close Menu
+            player.refineryCostMenu.SetActive(false);
         }
     }
 }

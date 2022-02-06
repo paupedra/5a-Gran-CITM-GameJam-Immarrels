@@ -1043,7 +1043,7 @@ GameObject:
   - component: {fileID: 4708929004372995009}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1115,6 +1115,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 4708929004372995008}
   camera: {fileID: 0}
+  pickIcon: {fileID: 0}
+  buildIcon: {fileID: 0}
   playerSpeed: 2
   playerTurnTime: 0.1
   rock: 0
@@ -1122,14 +1124,24 @@ MonoBehaviour:
   metal: 0
   clay: 0
   brick: 0
+  shootCost: 10
+  coalText: {fileID: 0}
+  metalText: {fileID: 0}
+  rockText: {fileID: 0}
+  clayText: {fileID: 0}
+  brickText: {fileID: 0}
   miningTime: 0.75
   currentPlayerTile: 0
   wantToUnlockTile: {x: 0, y: 0}
   coalCostUnlock: 0
   metalCostUnlock: 0
   rockCostUnlock: 0
-  greenTransparentMat: {fileID: 0}
+  greenTransparentMat: {fileID: 2100000, guid: 9a767ddd851dcef499438bfa5bc934dd, type: 2}
+  redTransparentMat: {fileID: 2100000, guid: ae700eb64e14b7c46aa5d6457433029a, type: 2}
   miningAreaObject: {fileID: 5141790392645123712}
+  projectile: {fileID: 8070574638072692645, guid: e69b4d82c5a40b44c834475867aa3cf9, type: 3}
+  buildMenu: {fileID: 0}
+  refineryCostMenu: {fileID: 0}
   coalCostText: {fileID: 0}
   metalCostText: {fileID: 0}
   rockCostText: {fileID: 0}
