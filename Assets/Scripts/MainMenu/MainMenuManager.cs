@@ -22,6 +22,19 @@ public class MainMenuManager : MonoBehaviour
         
     }
 
+    public void OpenURL(string user)
+    {
+        Application.OpenURL(user);
+    }
+
+    public void OnOffPanel(GameObject name)
+    {
+        if (name.activeSelf == true)
+            name.SetActive(false);
+        else
+            name.SetActive(true);
+    }
+
     public void OnStart()
     {
         SceneManager.LoadScene("GameScene");
