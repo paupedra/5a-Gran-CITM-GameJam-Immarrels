@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Buildings : MonoBehaviour
+public class Buildings : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject pop_up;
 
@@ -11,29 +11,13 @@ public class Buildings : MonoBehaviour
     {
         pop_up.SetActive(false);
     }
-
-    public void Update()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        OnMouseOver("PopUp");
+        pop_up.SetActive(true);
     }
 
-    public void OnMouseOver(string tag)
+    public void OnPointerExit(PointerEventData eventData)
     {
-        PointerEventData data = new PointerEventData(EventSystem.current);
-
-        data.position = Input.mousePosition;
-
-        List<RaycastResult> ray = new List<RaycastResult>();
-
-        EventSystem.current.RaycastAll(data,ray);
-
-        foreach(RaycastResult rayResult in ray)
-        {
-            if(rayResult.gameObject.tag == tag)
-            {
-                pop_up.SetActive(true);
-            }
-        }
-
+        pop_up.SetActive(false);
     }
 }

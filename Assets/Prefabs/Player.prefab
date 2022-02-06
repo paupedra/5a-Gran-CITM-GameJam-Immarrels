@@ -1142,6 +1142,9 @@ MonoBehaviour:
   projectile: {fileID: 8070574638072692645, guid: e69b4d82c5a40b44c834475867aa3cf9, type: 3}
   buildMenu: {fileID: 0}
   refineryCostMenu: {fileID: 0}
+  townHallMenu: {fileID: 0}
+  clayCostText: {fileID: 0}
+  bricksProducedText: {fileID: 0}
   coalCostText: {fileID: 0}
   metalCostText: {fileID: 0}
   rockCostText: {fileID: 0}
