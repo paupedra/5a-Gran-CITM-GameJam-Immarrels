@@ -65,7 +65,7 @@ public class HexGridManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        corruptionText.text = string.Concat(((float)corruptedTiles / (float)(tiles.Length - 1) * 100).ToString()," % Corruption");
+        corruptionText.text = string.Concat(((float)corruptedTiles / (float)(tiles.Length - 1) * 100).ToString("F2")," % Corruption");
 
         if(corruptedTiles >= tiles.Length-1)
         {
