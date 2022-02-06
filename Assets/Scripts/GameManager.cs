@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     float endGameTimer = 0;
     float endGameTime = 5;
 
-
+    public AudioSource music;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
         gui.SetActive(true);
         wonMenu.SetActive(false);
         lostMenu.SetActive(false);
+
+        music.Play();
     }
 
     // Update is called once per frame
