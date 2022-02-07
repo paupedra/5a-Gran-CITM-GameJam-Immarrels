@@ -87,7 +87,7 @@ public class HexGridManager : MonoBehaviour
 
 
 
-            if (corruptionTimer >= 100 * 0.3 + corruptedTiles)
+            if (corruptionTimer >= 100 * 0.3 + (corruptedTiles/5))
             {
                 corruption.Play();
 
