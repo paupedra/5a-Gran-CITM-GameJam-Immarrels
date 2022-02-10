@@ -40,6 +40,7 @@ public class TownHall : MonoBehaviour
         {
             //DO stuff to end game in victory
             gameManager.won = true;
+            player.townHallMenu.SetActive(false);
         }
     }
 
