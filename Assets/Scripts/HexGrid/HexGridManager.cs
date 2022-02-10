@@ -87,7 +87,7 @@ public class HexGridManager : MonoBehaviour
 
             
 
-            if (corruptionTimer >= (100 * 0.3) + corruptedTiles/10 - 10)
+            if (corruptionTimer >= (100 * 0.3) + corruptedTiles/10 - 25)
             {
                 corruption.Play();
 
@@ -109,7 +109,7 @@ public class HexGridManager : MonoBehaviour
                 }
                 corruptionTimer = 0;
             }
-            nextCorruptionText.text = string.Concat("Corruption expands in: ", (((100 * 0.3) + corruptedTiles / 10 - 10) - corruptionTimer).ToString("f2"), " s");
+            nextCorruptionText.text = string.Concat("Corruption expands in: ", (((100 * 0.3) + corruptedTiles / 10 - 25) - corruptionTimer).ToString("f2"), " s");
         }
         
     }

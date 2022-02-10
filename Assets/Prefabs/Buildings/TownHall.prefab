@@ -44,15 +44,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8790817681485802036, guid: 6cb153ec00be338459af92f2b4323836, type: 3}
       propertyPath: coalCompleteCost
-      value: 200
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 8790817681485802036, guid: 6cb153ec00be338459af92f2b4323836, type: 3}
       propertyPath: rockCompleteCost
-      value: 420
+      value: 550
       objectReference: {fileID: 0}
     - target: {fileID: 8790817681485802036, guid: 6cb153ec00be338459af92f2b4323836, type: 3}
       propertyPath: metalCompleteCost
-      value: 75
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8975764856124834603, guid: 6cb153ec00be338459af92f2b4323836, type: 3}
       propertyPath: m_RootOrder

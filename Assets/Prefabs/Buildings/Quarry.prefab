@@ -49,8 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectorType: 0
-  productionTime: 20
-  orePerProduction: 5
+  productionTime: 15
+  orePerProduction: 10
+  corrupted: 0
   floatingText: {fileID: 8717052149153365816, guid: b3f8a0206ec877d42aa5384b9019dcf6, type: 3}
 --- !u!1 &1710454314011291915
 GameObject:
