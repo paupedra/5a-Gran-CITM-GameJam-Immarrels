@@ -597,9 +597,9 @@ public class PlayerController : MonoBehaviour
         if(brick >= shootCost)
         {
             brick -= shootCost;
-            Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.rotation);
-            Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y +30, transform.rotation.eulerAngles.z)));
-            Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - 30, transform.rotation.eulerAngles.z)));
+            //Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), transform.rotation);
+            Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y +20, transform.rotation.eulerAngles.z)));
+            Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z), Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - 20, transform.rotation.eulerAngles.z)));
 
             shootSound.Play();
         }
